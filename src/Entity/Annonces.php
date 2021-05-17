@@ -42,6 +42,12 @@ class Annonces
      */
     private $valide;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $linkAnnonce;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +109,18 @@ class Annonces
     public function setValide(bool $valide): self
     {
         $this->valide = $valide;
+
+        return $this;
+    }
+
+    public function getLinkAnnonce(): ?User
+    {
+        return $this->linkAnnonce;
+    }
+
+    public function setLinkAnnonce(?User $linkAnnonce): self
+    {
+        $this->linkAnnonce = $linkAnnonce;
 
         return $this;
     }

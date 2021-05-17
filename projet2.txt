@@ -6,5 +6,5 @@ Bdd user
 
 Bdd annonces 
 
-| annonces | date | description | categorie | valide |
+| annonces | date | description | categorie | valide | link_annonce
 
