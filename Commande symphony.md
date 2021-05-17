@@ -3,6 +3,8 @@
 # 1 créer un projet
 composer create-project symfony/website-skeleton playboy2000    
 # 2 Modify your DATABASE_URL config in .env poru faire le lien de la bdd exemple DATABASE_URL="mysql://root:@127.0.0.1:3306/playboy2000?serverVersion=5.7.31" à la ligne 31 de .env
+crée la database
+php bin/console doctrine:database:create
 # 3 besoin d'apache
 composer require symfony/apache-pack
 # 4 créer un controler
