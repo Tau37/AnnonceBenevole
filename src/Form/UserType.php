@@ -13,7 +13,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email')
-            //->add('roles')
+            //->add('roles') créer une erreur de conversion array to string cependant ont ne va pas utilisé ce champs
             ->add('password')
             ->add('nom')
             ->add('prenom')
