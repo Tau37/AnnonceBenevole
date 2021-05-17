@@ -1,0 +1,10 @@
+
+
+Bdd user
+
+| nom | prénom | ville | tel |
+
+Bdd annonces 
+
+| annonces | date | description | categorie | valide |
+
