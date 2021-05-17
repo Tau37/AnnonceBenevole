@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonces index{% endblock %}
+
+{% block body %}
+    <h1>Annonces index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Annonces</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Categorie</th>
+                <th>Valide</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for annonce in annonces %}
+            <tr>
+                <td>{{ annonce.id }}</td>
+                <td>{{ annonce.annonces }}</td>
+                <td>{{ annonce.date ? annonce.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ annonce.description }}</td>
+                <td>{{ annonce.categorie }}</td>
+                <td>{{ annonce.valide ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('annonces_show', {'id': annonce.id}) }}">show</a>
+                    <a href="{{ path('annonces_edit', {'id': annonce.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('annonces_new') }}">Create new</a>
+{% endblock %}
