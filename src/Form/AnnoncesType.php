@@ -13,7 +13,7 @@ class AnnoncesType extends AbstractType
     {
         $builder
             ->add('annonces')
-            ->add('date') 
+            //->add('date') 
             ->add('description')
             ->add('categorie')
             ->add('valide')
