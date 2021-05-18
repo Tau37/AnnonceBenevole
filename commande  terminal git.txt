@@ -1,0 +1,47 @@
+création d'un nouveau répertoire /////////////////
+
+git init  				// initialisation des commande git
+git add README.md			// créer un readme
+git commit -m "first commit"		// préparer un envoie de fichier + check avec un -m "message"
+git log					// voir les logs de commit pour "discution"
+git branch -M main 			// créer une branche main
+git branch .......			// créer une nouvelle branche de nom .......
+git remote add origin https://github.com/Tau37/git.git 		// lié le compte git hub avec le pc via le terminal
+git push -u origin main 		// envoyer les fichier d'origine 
+
+
+git checkout .....			// switcher sur la branche .....
+
+
+push dans un répertoire existant.
+
+1) git remote add origin https://github.com/Tau37/git.git 		// lié le compte git hub avec le pc via le terminal
+2) git branch -M main 			// créer une branche main
+3) git push -u origin main 		// envoyer les fichier d'origine 
+
+
+git status 				// regarder status du git.		
+
+
+git add					// ajoute un fichier contenu dans l'index
+
+////////////////////////////////////////////
+git 					// permet d'afficher un liste de commande tout comme un /help dans de nombreuse console
+////////////////////////////////////////////
+
+git fetch // repére les différences avec le répertoire github
+
+git pull // copy le code différent du répertoire github
+
+
+
+///////////////////////////////////////////////////////////////////////////// doc aide git
+https://www.atlassian.com/fr/git/tutorials/syncing/git-push#:~:text=La%20commande%20git%20push%20est,local%20vers%20un%20d%C3%A9p%C3%B4t%20distant.&text=C'est%20l'%C3%A9quivalent%20de,exporte%20vers%20des%20branches%20distantes.v
+/////////////////////////////////////////////////////////////////////////////
+
+██╗░░░██╗██████╗░██████╗░░█████╗░████████╗███████╗
+██║░░░██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
+██║░░░██║██████╔╝██║░░██║███████║░░░██║░░░█████╗░░
+██║░░░██║██╔═══╝░██║░░██║██╔══██║░░░██║░░░██╔══╝░░
+╚██████╔╝██║░░░░░██████╔╝██║░░██║░░░██║░░░███████╗
+░╚═════╝░╚═╝░░░░░╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚══════╝
