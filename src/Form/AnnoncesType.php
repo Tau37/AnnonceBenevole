@@ -15,7 +15,6 @@ class AnnoncesType extends AbstractType
             ->add('annonces')
             //->add('date') 
             ->add('description')
-            ->add('categorie')
             ->add('valide')
             //->add('linkAnnonce') impossible de lire la liaison dans le crud de toute manière elle ne doit pas être modifiable
         ;

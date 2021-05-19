@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\AnnoncesRepository;
+use App\Entity\Categories;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AnnoncesRepository;
 
 /**
  * @ORM\Entity(repositoryClass=AnnoncesRepository::class)
@@ -33,11 +34,6 @@ class Annonces
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $categorie;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $valide;
@@ -47,6 +43,11 @@ class Annonces
      * @ORM\JoinColumn(nullable=false)
      */
     private $linkAnnonce;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="annonces")
+     */
+    private $linkCategorie;
 
     public function getId(): ?int
     {
@@ -89,18 +90,6 @@ class Annonces
         return $this;
     }
 
-    public function getCategorie(): ?string
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(string $categorie): self
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
-
     public function getValide(): ?bool
     {
         return $this->valide;
@@ -121,6 +110,18 @@ class Annonces
     public function setLinkAnnonce(?User $linkAnnonce): self
     {
         $this->linkAnnonce = $linkAnnonce;
+
+        return $this;
+    }
+
+    public function getLinkCategorie(): ?Categories
+    {
+        return $this->linkCategorie;
+    }
+
+    public function setLinkCategorie(?Categories $linkCategorie): self
+    {
+        $this->linkCategorie = $linkCategorie;
 
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Categories;
 use App\Entity\Annonces;
 use App\Form\AnnoncesType;
 use App\Repository\AnnoncesRepository;
@@ -42,7 +43,9 @@ class AnnoncesController extends AbstractController
             date_default_timezone_set('Europe/Paris');
 
             $annonce->setDate(new \DateTime('now'));
-
+            $categorie = new Categories;
+            $categorie->setCategorie('1'); // A corriger!!!!!
+            $annonce->setLinkCategorie($categorie->getCategorie());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);
             $entityManager->flush();
