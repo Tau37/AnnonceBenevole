@@ -1,7 +1,11 @@
 #annonces {
     /* border: 4px red solid; */
-    display: flex;
-    justify-content: space-around;
-    /*align-items: center;*/
-    flex-wrap: wrap;
+    /* display: flex; */
+    /* justify-content: space-around; */
+    /* align-items: center; */
+    /* flex-wrap: wrap; */
+    width: 80%;
+    height: 75vh;
+    overflow: auto;
+    margin: auto;
 }
