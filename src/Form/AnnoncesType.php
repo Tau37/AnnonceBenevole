@@ -13,8 +13,6 @@ class AnnoncesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $anonce = new Categories;
-        dd($anonce);
         $builder
             ->add('annonces')
             //->add('date') 
