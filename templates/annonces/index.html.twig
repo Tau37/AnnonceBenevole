@@ -12,7 +12,7 @@
                 <th>Annonces</th>
                 <th>Date</th>
                 <th>Description</th>
-                <th>Categorie</th>
+                {# <th>Categorie</th> #}
                 <th>Valide</th>
                 <th>actions</th>
             </tr>
@@ -24,7 +24,7 @@
                 <td>{{ annonce.annonces }}</td>
                 <td>{{ annonce.date ? annonce.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ annonce.description }}</td>
-                <td>{{ annonce.categorie }}</td>
+                {# <td>{{ annonce.categorie }}</td> #}
                 <td>{{ annonce.valide ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('annonces_show', {'id': annonce.id}) }}">show</a>

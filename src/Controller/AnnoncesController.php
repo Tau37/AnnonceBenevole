@@ -44,7 +44,7 @@ class AnnoncesController extends AbstractController
 
             $annonce->setDate(new \DateTime('now'));
             $categorie = new Categories;
-            $categorie->setCategorie('1'); // A corriger!!!!!
+            //$categorie->setCategorie('1'); // A corriger!!!!!
             $annonce->setLinkCategorie($categorie->getCategorie());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);
