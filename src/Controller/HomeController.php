@@ -14,9 +14,16 @@ class HomeController extends AbstractController
      */
     public function index(AnnoncesRepository $annoncesRepository): Response
     {
-        $annonces = $annoncesRepository->findAll();
         
-        return $this->render('home/index.html.twig', [
+        return $this->render('home/index.html.twig');
+    }
+    /**
+     * @Route("/liste/annonces", name="annonces", methods={"GET"})
+     */
+    public function annonce(AnnoncesRepository $annoncesRepository): Response
+    {
+        $annonces = $annoncesRepository->findAll();
+        return $this->render('annonces/annonces.html.twig', [
             'annonces' => $annonces,
             'controller_name' => 'HomeController',
         ]);

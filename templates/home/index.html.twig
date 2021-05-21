@@ -18,28 +18,10 @@
 	</style>
 
 	<div class="example-wrapper">
-		<h1>Les bonnes annonces 👍 </h1>
+		<h1>Bienvenue troululu 👍 </h1>
 	</div>
 
-<section id="annonces">
-{% for item in annonces %}
-    
-    
-	<div class="card card-centrer">
-		<img class="card-img-top" src="#" alt="#">
-		<div class="card-body">
-			<h5 class="card-title">{{ item.annonces }}</h5>
-			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
-			<p class="card-text">{{ item.description }}</p>
-            
 
-			<a href="#" class="btn btn-primary">Plus d'info... (à faire)</a>
-			{# <a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a> #}
-		</div>
-	</div>
-
-{% endfor %}
-</section>
 
 
 {% endblock %}
