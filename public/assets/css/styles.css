@@ -1,3 +1,4 @@
+
 #annonces {
     /* border: 4px red solid; */
     /* display: flex; */
@@ -7,5 +8,10 @@
     width: 80%;
     height: 75vh;
     overflow: auto;
+    margin: auto;
+}
+
+#Carroussel{
+    width: 80%;
     margin: auto;
 }
