@@ -1,24 +1,44 @@
 $(document).ready(function() { // charge le DOM avant d'executer le script à l'intérieur de la function
 
-
-    let tableauImage = Array("assets/img/bricolage.jpg", "assets/img/cuisine.jpg", "assets/img/jardinage.jpg", "assets/img/music.jpeg" , "assets/img/promenade.jpg", "assets/img/sport.jpeg", "assets/img/artplast.png"); // tableauImag=[]
-    let i = 0
-    $(".photo").click(function() {
+    $(".carousel").owlCarousel({
+        margin: 20,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 2000,
+        autoplayHoverPause: true,
+        responsive: {
+          0:{
+            items:1,
+            nav: false
+          },
+          600:{
+            items:2,
+            nav: false
+          },
+          1000:{
+            items:3,
+            nav: false
+          }
+        }
+      });
+    // let tableauImage = Array("assets/img/bricolage.jpg", "assets/img/cuisine.jpg", "assets/img/jardinage.jpg", "assets/img/music.jpeg" , "assets/img/promenade.jpg", "assets/img/sport.jpeg", "assets/img/artplast.png"); // tableauImag=[]
+    // let i = 0
+    // $(".photo").click(function() {
         
 
-        if (i < tableauImage.length) {
+    //     if (i < tableauImage.length) {
           
-            $("#Carrouselimg").attr("src", tableauImage[i])
+    //         $("#Carrouselimg").attr("src", tableauImage[i])
             
-            i++
-            console.log(tableauImage[i]);
+    //         i++
+    //         console.log(tableauImage[i]);
             
-        }
+    //     }
 
-        if (i === tableauImage.length) {
-            i = 0
-        }
-    });
+    //     if (i === tableauImage.length) {
+    //         i = 0
+    //     }
+    // });
 
 
 
