@@ -10,6 +10,7 @@
 		<thead>
 			<tr>
 				<th>Id</th>
+				<th>Nom</th>
 				<th>Annonces</th>
 				<th>Date</th>
 				<th>Description</th>
@@ -22,6 +23,7 @@
 			{% for annonce in annonces %}
 				<tr>
 					<td>{{ annonce.id }}</td>
+					<td>{{ annonce.LinkAnnonce.prenom }}</td>
 					<td>{{ annonce.annonces }}</td>
 					<td>{{ annonce.date ? annonce.date|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ annonce.description }}</td>

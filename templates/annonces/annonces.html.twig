@@ -24,11 +24,14 @@
 <section id="annonces">
 {% for item in annonces %}
     
-    
+    {# <pre>
+		{{ dump(item.linkAnnonce.prenom) }}
+	</pre> #}
 	<div class="card card-centrer">
 		<img class="card-img-top" src="#" alt="#">
 		<div class="card-body">
 			<h5 class="card-title">{{ item.annonces }}</h5>
+			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
 			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
 			<p class="card-text">{{ item.description }}</p>
             
