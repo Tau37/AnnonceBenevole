@@ -39,7 +39,4 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
          - { path: ^/user/new, roles: ROLE_ADMIN }
          - { path: ^/annonces/new, roles: ROLE_USER }
-<<<<<<< HEAD
-        
-=======
->>>>>>> 0675b930fae9c44e7c87123a94a44faeaa295ade
+

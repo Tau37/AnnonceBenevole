@@ -40,8 +40,8 @@
 			<p class="card-text">{{ item.description }}</p>
 			<p class="card-text">{{ item.linkCategorie.categorie }}</p>
 			<p class="card-text">{{ item.linkCategorie.id }}</p>
-			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="">
-			<a href="#" class="btn btn-primary">Plus d'info... (à faire)</a>
+			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}">
+			<a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a>
 			{# <a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a> #}
 		</div>
 	</div>

@@ -27,7 +27,10 @@ class HomeController extends AbstractController
      */
     public function annonce(AnnoncesRepository $annoncesRepository): Response
     {
-        $annonces = $annoncesRepository->findAll();
+
+        
+        $annonces = $annoncesRepository->findBy(["valide" => "1" ] ,["date" => "DESC"]);
+        //$annonces = $annoncesRepository->findAll();
         return $this->render('annonces/annonces.html.twig', [
             'annonces' => $annonces,
             'controller_name' => 'HomeController',
