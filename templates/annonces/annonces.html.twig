@@ -22,10 +22,14 @@
 	</div>
 
 <section id="annonces">
+<div>
+<img src={{ asset("assets/img/categorie/{{item.linkCategorie.id}}.jpg") }} alt="">
+
+</div>
 {% for item in annonces %}
     
     {# <pre>
-		{{ dump(item.linkAnnonce) }}
+		{{ dump(item) }}
 	</pre> #}
 	<div class="card card-centrer">
 		<img class="card-img-top" src="#" alt="#">
@@ -34,8 +38,9 @@
 			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
 			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
 			<p class="card-text">{{ item.description }}</p>
-            
-
+			<p class="card-text">{{ item.linkCategorie.categorie }}</p>
+			<p class="card-text">{{ item.linkCategorie.id }}</p>
+			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="">
 			<a href="#" class="btn btn-primary">Plus d'info... (à faire)</a>
 			{# <a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a> #}
 		</div>

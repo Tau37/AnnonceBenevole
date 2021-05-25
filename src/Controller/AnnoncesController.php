@@ -24,9 +24,7 @@ class AnnoncesController extends AbstractController
     public function index(AnnoncesRepository $annoncesRepository, CategoriesRepository $categoriesRepository): Response
     {
 
-        $annonceFindAll = $annoncesRepository->findAll();
         // je récupére le nom des catégorie en fonction de l'id de la liaison (linkCategorie)
-        $tabNameCategorie = [];
         if (isset($_GET["id_categorie"]) && !empty($_GET["id_categorie"])) {
             $id_categorie = $_GET["id_categorie"];
             $id_categorie = $categoriesRepository->findBy(["id"=> $id_categorie]);
