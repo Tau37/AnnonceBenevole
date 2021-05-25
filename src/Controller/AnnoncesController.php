@@ -54,7 +54,9 @@ class AnnoncesController extends AbstractController
         $annonce = new Annonces();
         $form = $this->createForm(AnnoncesType::class, $annonce);
         $form->handleRequest($request);
-
+        if ($this->getUser() === Null) {
+            return $this->redirectToRoute('app_login');
+        }
         if ($form->isSubmitted() && $form->isValid()) {
             // je dois récupere l'id mon user
             $annonce->setLinkAnnonce($this->getUser());
