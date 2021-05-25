@@ -22,7 +22,7 @@ class AnnoncesType extends AbstractType
             
             //->add('date') 
             ->add('description')
-            ->add('valide')
+            //->add('valide')
             //->add('linkAnnonce') impossible de lire la liaison dans le crud de toute manière elle ne doit pas être modifiable
             ->add('linkCategorie', EntityType::class,array(
                 'class'=>Categories::class,

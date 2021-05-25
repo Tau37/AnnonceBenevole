@@ -23,27 +23,23 @@ class AnnoncesController extends AbstractController
      */
     public function index(AnnoncesRepository $annoncesRepository, CategoriesRepository $categoriesRepository): Response
     {
+
         $annonceFindAll = $annoncesRepository->findAll();
         // je récupére le nom des catégorie en fonction de l'id de la liaison (linkCategorie)
         $tabNameCategorie = [];
-        foreach ($annonceFindAll as $key => $value) {
-            $idCategorieAnnonce = $annonceFindAll[$key]->getLinkCategorie()->getId();
-            $nameCategorie[$key] = $categoriesRepository->findBy(["id"=> $idCategorieAnnonce]);
-            // dump($nameCategorie[$key][0]->getcategorie());
-            $tabNameCategorie[$key] = $nameCategorie[$key][0]->getcategorie();
+        if (isset($_GET["id_categorie"]) && !empty($_GET["id_categorie"])) {
+            $id_categorie = $_GET["id_categorie"];
+            $id_categorie = $categoriesRepository->findBy(["id"=> $id_categorie]);
+            $annonce = $annoncesRepository->findBy(["linkCategorie"=> $id_categorie]);
+            //dd($annonce);
+        } else {
+            $id_categorie = null;
+            $annonce = $annoncesRepository->findAll();
         }
-        
-        // dump($tabNameCategorie);
-        $annonce = $annonceFindAll;
-        //dd($annonce);
-        //dd($tabNameCategorie);
-
-
 
         
         return $this->render('annonces/index.html.twig', [
             'annonces' =>  $annonce,
-            'categorie' => $tabNameCategorie,
             
         ]);
     }
