@@ -14,7 +14,12 @@ class AnnoncesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('annonces')
+            ->add('annonces') 
+           // EntityType::class, array(
+            // "attr" => ['label'=>'Titre'],
+            // ))
+                
+            
             //->add('date') 
             ->add('description')
             ->add('valide')

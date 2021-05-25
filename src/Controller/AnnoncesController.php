@@ -29,11 +29,11 @@ class AnnoncesController extends AbstractController
         foreach ($annonceFindAll as $key => $value) {
             $idCategorieAnnonce = $annonceFindAll[$key]->getLinkCategorie()->getId();
             $nameCategorie[$key] = $categoriesRepository->findBy(["id"=> $idCategorieAnnonce]);
-            dump($nameCategorie[$key][0]->getcategorie());
+            // dump($nameCategorie[$key][0]->getcategorie());
             $tabNameCategorie[$key] = $nameCategorie[$key][0]->getcategorie();
         }
         
-        dump($tabNameCategorie);
+        // dump($tabNameCategorie);
         $annonce = $annonceFindAll;
         //dd($annonce);
         //dd($tabNameCategorie);
@@ -85,10 +85,15 @@ class AnnoncesController extends AbstractController
     /**
      * @Route("/{id}", name="annonces_show", methods={"GET"})
      */
-    public function show(Annonces $annonce): Response
+    public function show(Annonces $annonce, CategoriesRepository $categoriesRepository): Response
     {
+        //dd($annonce);
+        $categorie = $annonce->getLinkCategorie()->getCategorie();
+        $nom = $annonce->getLinkAnnonce()->getNom();
         return $this->render('annonces/show.html.twig', [
             'annonce' => $annonce,
+            'nom' => $nom,
+            'categorie' => $categorie,
         ]);
     }
 

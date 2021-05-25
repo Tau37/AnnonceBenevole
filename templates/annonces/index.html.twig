@@ -22,16 +22,17 @@
 		<tbody>
 			{% for annonce in annonces %}
 				<tr>
+					{# <pre>
+						{{ dump(annonce) }}
+					</pre> #}
+					
 					<td>{{ annonce.id }}</td>
 					<td>{{ annonce.LinkAnnonce.prenom }}</td>
 					<td>{{ annonce.annonces }}</td>
 					<td>{{ annonce.date ? annonce.date|date('Y-m-d H:i:s') : '' }}</td>
 					<td>{{ annonce.description }}</td>
-					{# {% if annonces.id === categorie.1 %} #}
-					{% set tabCategorie = categorie %}
-					{% set idCategorie = annonce.id - 1 %}
-					{% set nameCategorie = tabCategorie[idCategorie] %}
-					<td>{{ nameCategorie }}</td>
+					<td>{{ annonce.linkCategorie.categorie }}</td>
+
 					{# {% endif %} #}
 					<td>{{ annonce.valide ? 'Yes' : 'No' }}</td>
 					<td>
