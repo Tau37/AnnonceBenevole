@@ -38,9 +38,10 @@
 			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
 			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
 			<p class="card-text">{{ item.description }}</p>
-			<p class="card-text">{{ item.linkCategorie.categorie }}</p>
+			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
+			{# <p class="card-text">{{ item.linkCategorie.categorie }}</p>
 			<p class="card-text">{{ item.linkCategorie.id }}</p>
-			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}">
+			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}"> #}
 			<a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a>
 			{# <a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a> #}
 		</div>
