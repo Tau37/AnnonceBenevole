@@ -69,6 +69,31 @@ class CategoriesController extends AbstractController
                 } 
             }
 
+            if(!empty($_FILES['categories']) && isset($_FILES['categories'])){
+                
+                $files = $_FILES['categories'];
+                dump($files['tmp_name']['logo']);
+               
+                // test des différents types d'erreur (type,size,error) qui peuvent êtres fait séparement
+                if ($files['type']['logo'] === 'image/jpeg' || $files['type']['logo'] === 'image/jpg' || $files['type']['logo'] === 'image/gif' || $files['type']['logo'] === 'image/png' || $files['type']['logo'] === 'image/webp') {
+                    
+                    $tmpImg = $public."assets/img/upload/".$files['name']['logo'];
+                    move_uploaded_file($files['tmp_name']['logo'],$tmpImg);  
+                    
+                    $idCategorie = $category->getId();
+                    //ImageResize
+                    $logo = new ImageResize($tmpImg);
+                    //$logo->resize(30, 30); 
+                    $logo->save($public."assets/img/logo/".$idCategorie.".png",IMAGETYPE_PNG);
+                    $avatarth = new ImageResize($tmpImg); 
+                    //$logoth->resizeToWidth(80);
+                    //$logoth->save($public."assets/images/users/thumbnail/".$idCategorie.".webp",IMAGETYPE_WEBP);
+                    // unlink je supprime l'image d'origine
+                    unlink($tmpImg);
+
+                } 
+            }
+
 
             return $this->redirectToRoute('categories_index');
         }

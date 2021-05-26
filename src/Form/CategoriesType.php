@@ -23,6 +23,15 @@ class CategoriesType extends AbstractType
                 'required' => false
 
             ])
+            ->add('logo', FileType::class, [
+                'mapped' => false,
+                'multiple'=>false,
+                "empty_data"=>true,
+                'invalid_message'=>'Mauvais format de fichier',
+                'label'=> 'Votre logo de catégorie',
+                'required' => false
+
+            ])
         ;
     }
 
