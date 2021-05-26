@@ -6,6 +6,7 @@ use App\Entity\Categories;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class CategoriesType extends AbstractType
 {
@@ -13,6 +14,15 @@ class CategoriesType extends AbstractType
     {
         $builder
             ->add('categorie')
+            ->add('avatar', FileType::class, [
+                'mapped' => false,
+                'multiple'=>false,
+                "empty_data"=>true,
+                'invalid_message'=>'Mauvais format de fichier',
+                'label'=> 'Votre image de catégorie',
+                'required' => false
+
+            ])
         ;
     }
 
