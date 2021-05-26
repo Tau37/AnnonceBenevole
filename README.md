@@ -1,3 +1,11 @@
+## Changer la page de easy admin
+
+chemin d'acces
+
+```AnnonceBenevole\vendor\easycorp\easyadmin-bundle\src\Resources\views\welcome.html.twig```
+
+
+
 composer # SYMFONY
 
 ## COMPOSER
