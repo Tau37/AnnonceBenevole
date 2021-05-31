@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+<script src="{{ asset('assets/js/annonces.js') }}"></script>
 	<style>
 		.example-wrapper {
 			margin: 1em auto;
@@ -23,7 +24,8 @@
 
 <section id="annonces">
 <div>
-<img src={{ asset("assets/img/categorie/{{item.linkCategorie.id}}.jpg") }} alt="">
+{# image catégorie selection voir plus tard #}
+{# <img src={{ asset("assets/img/categorie/{{item.linkCategorie.id}}.jpg") }} alt=""> #}
 
 </div>
 {% for item in annonces %}
@@ -31,8 +33,8 @@
     {# <pre>
 		{{ dump(item) }}
 	</pre> #}
-	<div class="card card-centrer">
-		<img class="card-img-top" src="#" alt="#">
+	<div class="card card-centrer global">
+		{# <img class="card-img-top" src="#" alt="#"> #}
 		<div class="card-body">
 			<h5 class="card-title">{{ item.annonces }}</h5>
 			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
@@ -43,9 +45,18 @@
 			<p class="card-text">{{ item.linkCategorie.id }}</p>
 			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}"> #}
 			<a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a>
+			<a href="#" class="suite">Lire la suite</a>
 			{# <a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a> #}
 		</div>
 	</div>
+	<div class=" card card-centrer coucou">
+		<div class="card-body">
+        	<h5 class="card-title">Vous lisez la suite</h5>
+			<p class="card-text">{{ item.linkCategorie.categorie }}</p>
+        	<br>
+        	<a href="#" class="retour">pour revenir</a>
+		</div>
+    </div>
 
 {% endfor %}
 </section>
