@@ -23,12 +23,14 @@
 	</div>
 
 <section id="annonces">
-<div>
-{# image catégorie selection voir plus tard #}
-{# <img src={{ asset("assets/img/categorie/{{item.linkCategorie.id}}.jpg") }} alt=""> #}
+	<div>
+	{# image catégorie selection voir plus tard #}
+	{# <img src={{ asset("assets/img/categorie/{{item.linkCategorie.id}}.jpg") }} alt=""> #}
 
-</div>
-{% for item in annonces %}
+	</div>
+	{# variable de différenciation des popUP #}
+	{% set popUpNumber = 1 %}
+	{% for item in annonces %}
     
     {# <pre>
 		{{ dump(item) }}
@@ -45,21 +47,31 @@
 			<p class="card-text">{{ item.linkCategorie.id }}</p>
 			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}"> #}
 			<a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a>
-			<a href="#" class="suite">Lire la suite</a>
+			<a href="#" id="suite{{popUpNumber}}">Lire la suite</a>
 			{# <a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a> #}
+			{# <p>pop numéro {{ popUpNumber }}</p> #}
 		</div>
 	</div>
-	<div class=" card card-centrer coucou">
+	<div class=" card card-centrer popUp" id="popUpAnnonceNum{{popUpNumber}}">
 		<div class="card-body">
         	<h5 class="card-title">Vous lisez la suite</h5>
-			<p class="card-text">{{ item.linkCategorie.categorie }}</p>
+			<h5 class="card-title">{{ item.annonces }}</h5>
+			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
+			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
+			<p class="card-text">{{ item.description }}</p>
+			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
         	<br>
         	<a href="#" class="retour">pour revenir</a>
 		</div>
     </div>
-
+	
+	{# incréemntation  différenciation des popUP #}
+	{% set popUpNumber = (popUpNumber + 1) %}
 {% endfor %}
 </section>
+
+{# déclare le nombre de popUp généré dans le script #}
+<script> popUpNumber = {{ popUpNumber }} </script>
 
 
 {% endblock %}

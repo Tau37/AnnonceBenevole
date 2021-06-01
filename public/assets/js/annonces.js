@@ -1,31 +1,26 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    console.log("script en route");
-    let popop = document.querySelector('.coucou');
-    //let link = document.querySelector('.suite');
-    let global = document.querySelector('.global');
-    //let retour = document.querySelector('.retour');
+    let popop = document.querySelector('.popUp');
 
-    //link.addEventListener("click", function() {
-    $(".suite").click(function(e) {
-        e.preventDefault();
+    console.log("nombre de Pop up est de " + popUpNumber);
+    for (let index = 0; index < popUpNumber; index++) {
+        //console.log("ittération n° " + index);
+        //"popUpAnnonceNum + popUpNumber"
 
-        console.log("click");
-        popop.classList.add('coucou1');
-        global.classList.add('flou');
-        $(".global").addClass("flou");
-    });
+        $("#suite" + index).click(function(e) {
+            e.preventDefault();
 
-    //})
-    //retour.addEventListener("click", function() {
-    $(".retour").click(function(e) {
-        e.preventDefault();
+            $("#popUpAnnonceNum" + index).addClass("popUpAnnonce");
+            $(".global").addClass("flou");
+        });
 
-        popop.classList.remove('coucou1');
-        $(".global").removeClass("flou");
-    });
+        $(".retour").click(function(e) {
+            e.preventDefault();
+            $("#popUpAnnonceNum" + index).removeClass("popUpAnnonce");
+            $(".global").removeClass("flou");
+        });
 
-    //})
+    }
 
 
 });
