@@ -24,8 +24,40 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // attribuer un ROLE_USEr automatiquement
-            $user->setRoles(["ROLE_USER"]);
+            
+
+            $selection = $_POST['registration_form']['selection'];
+            if ($selection === 'Structures'){
+                $user->setRoles(["ROLE_STRUCTURE"]);
+                $user->setFiness($_POST['registration_form']['finess']);
+                $user->setStructure(strip_tags($_POST['registration_form']['structure']));
+                if (empty($_POST['registration_form']['finess']) || $_POST['registration_form']['finess'] === null ){
+                    return $this->render('registration/register.html.twig', [
+                        'registrationForm' => $form->createView(),
+                        'finessError' => 'Ce champ est vide !!!'
+                    ]);
+                }
+                if (strlen($_POST['registration_form']['finess']) === 9 ){
+                    return $this->render('registration/register.html.twig', [
+                        'registrationForm' => $form->createView(),
+                        'finessError' => 'Veuillez renseigner les 9 chiffres de votre N° FINESS...'
+                    ]);
+                }
+                if (empty($_POST['registration_form']['structure']) || $_POST['registration_form']['structure'] === null ){
+                    return $this->render('registration/register.html.twig', [
+                        'registrationForm' => $form->createView(),
+                        'structureError' => 'Ce champ est vide !!!'
+                    ]);
+                    
+                }
+            }
+            // dump($user);
+            // dd($_POST);
+            if ($selection === 'User'){
+                
+                // attribuer un ROLE_USEr automatiquement
+                    $user->setRoles(["ROLE_USER"]); 
+            }
             // comparaison des password
             //dd($form->get("plainPassword")->getData(),$form->get("confirmPassword")->getData());
             if ($form->get("plainPassword")->getData() === $form->get("confirmPassword")->getData()) {
@@ -36,7 +68,7 @@ class RegistrationController extends AbstractController
                         $form->get('plainPassword')->getData()
                     )
                 );
-
+                
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($user);
                 $entityManager->flush();
