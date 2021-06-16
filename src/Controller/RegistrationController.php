@@ -37,7 +37,8 @@ class RegistrationController extends AbstractController
                         'finessError' => 'Ce champ est vide !!!'
                     ]);
                 }
-                if (strlen($_POST['registration_form']['finess']) === 9 ){
+                // correction de la condition d'erreur
+                if (strlen($_POST['registration_form']['finess']) != 9 ){
                     return $this->render('registration/register.html.twig', [
                         'registrationForm' => $form->createView(),
                         'finessError' => 'Veuillez renseigner les 9 chiffres de votre N° FINESS...'

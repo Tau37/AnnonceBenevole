@@ -46,8 +46,8 @@
 			{# <p class="card-text">{{ item.linkCategorie.categorie }}</p>
 			<p class="card-text">{{ item.linkCategorie.id }}</p>
 			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}"> #}
-			<a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a>
-			<a href="#" id="suite{{popUpNumber}}">Lire la suite</a>
+			{# <a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a> #}
+			<a href="#" id="suite{{popUpNumber}}" class="btn btn-primary">Lire la suite</a>
 			{# <a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a> #}
 			{# <p>pop numéro {{ popUpNumber }}</p> #}
 		</div>
