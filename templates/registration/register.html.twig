@@ -1,66 +1,82 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Inscription - Les bonnes annonces
 {% endblock %}
-
 {% block body %}
-	<form method="post" class="container col-2">
+	<form method="post" class="container .col" style="height: 100vh;">
 		{% for flashError in app.flashes('verify_email_error') %}
 			<div class="alert alert-danger" role="alert">{{ flashError }}</div>
 		{% endfor %}
-
-		<h1 class="text-center">Inscrivez-vous</h1>
-
+		<div class="container d-flex align-items-center justify-content-between mt-4 mb-4">
+			<h1>Inscrivez-vous 👍</h1>
+			<div class="choose">
+				{{ form_row(registrationForm.selection, {'label' : 'Faites votre choix'}) }}
+			</div>
+		</div>
 		{{ form_start(registrationForm) }}
-		{{ form_row(registrationForm.selection, {
-			label: 'Vous êtes : '
+		<div class="structure popUp">
+			<div class="form-group">
+				{{ form_label(registrationForm.structure, 'Nom de votre structure')}}
+				{{ form_widget(registrationForm.structure, {'attr':{'class':'form-control'}})}}
+				{{ form_errors(registrationForm.structure) }}
+				{% if structureError is defined %}
+						<div class="alert alert-danger" role="alert">{{structureError}}</div>
+				{% endif %}
+			</div>
+			<div class="form-group">
+				{{ form_label(registrationForm.finess, 'Votre N° FINESS')}}
+				{{ form_widget(registrationForm.finess, {'attr':{'class':'form-control'}})}}
+				{{ form_errors(registrationForm.finess) }}
+				{% if finessError is defined %}
+						<div class="alert alert-danger" role="alert">{{finessError}}</div>
+				{% endif %}
+			</div>
+		</div>
+		<div class="form-group">
+			{{ form_label(registrationForm.email, 'Votre email')}}
+			{{ form_widget(registrationForm.email, {'attr':{'class':'form-control'}})}}
+		</div>
+		<div class="form-group">
+			{{ form_label(registrationForm.nom, 'Votre nom')}}
+			{{ form_widget(registrationForm.nom, {'attr':{'class':'form-control'}})}}
+		</div>
+		<div class="form-group">
+			{{ form_label(registrationForm.prenom, 'Votre prénom')}}
+			{{ form_widget(registrationForm.prenom, {'attr':{'class':'form-control'}})}}
+		</div>
+		<div class="form-group">
+			{{ form_row(registrationForm.ville, {'attr':{'class': 'form-control',
+				label: 'Votre ville '
+				}}) }}
+		</div>
+		<div class="form-group">
+			{{ form_label(registrationForm.cpostal, 'Code postal')}}
+			{{ form_widget(registrationForm.cpostal, {'attr':{'class':'form-control'}})}}
+		</div>
+		<div class="form-group">
+			{{ form_label(registrationForm.tel, 'Téléphone')}}
+			{{ form_widget(registrationForm.tel, {'attr':{'class':'form-control'}})}}
+		</div>
+		<div class="form-group">
+			{{ form_label(registrationForm.plainPassword, 'Mot de passe')}}
+			{{ form_widget(registrationForm.plainPassword, {'attr':{'class':'form-control'}})}}
+			{{ form_errors(registrationForm.plainPassword) }}
+			{% if passError is defined %}
+						<div class="alert alert-danger" role="alert">{{passError}}</div>
+				{% endif %}
+		</div>
+		<div class="form-group">
+			{{ form_label(registrationForm.confirmPassword, 'Confirmez le mot de passe')}}
+			{{ form_widget(registrationForm.confirmPassword, {'attr':{'class':'form-control'}})}}
+			{{ form_errors(registrationForm.confirmPassword) }}
+			{% if passError is defined %}
+					 <div class="alert alert-danger" role="alert">{{passError}}</div>
+			 {% endif %}
+		</div>
+		<div class="form-group">
+			{{ form_row(registrationForm.agreeTerms, {
+				label: 'J\' accèpte les termes de conditions d\'utilisation'
 			}) }}
-		{{ form_row(registrationForm.structure, {
-			label: 'Votre structure '
-			}) }}
-		{% if structureError is defined %}
-			<div class="alert alert-danger" role="alert">{{structureError}}</div>
-		{% endif %}
-		{{ form_row(registrationForm.finess, {
-			label: 'Numéro FINESS '
-			}) }}
-		{% if finessError is defined %}
-			<div class="alert alert-danger" role="alert">{{finessErro}}</div>
-		{% endif %}
-		{{ form_row(registrationForm.email,{
-			label: 'Votre email '
-			}) }}
-		{{ form_row(registrationForm.nom, {
-			label: 'Votre nom '
-			}) }}
-		{{ form_row(registrationForm.prenom, {
-			label: 'Votre prénom '
-			}) }}
-		{{ form_row(registrationForm.ville, {
-			label: 'Votre ville '
-			}) }}
-		{{ form_row(registrationForm.cpostal, {
-			label: 'Votre code postal '
-			}) }}
-		{{ form_row(registrationForm.tel, {
-			label: 'Votre numéro de tel '
-			}) }}
-		{{ form_row(registrationForm.plainPassword, {
-				label: 'Votre mot de pass'
-			}) }}
-		{% if passError is defined %}
-			<div class="alert alert-danger" role="alert">{{passError}}</div>
-		{% endif %}
-		{{ form_row(registrationForm.confirmPassword, {
-			label: 'Confirmez votre mot de pass'
-			}) }}
-		{% if passError is defined %}
-			<div class="alert alert-danger" role="alert">{{passError}}</div>
-		{% endif %}
-		{{ form_row(registrationForm.agreeTerms, {
-			label: 'J\' accèpte les termes de conditions d\'utilisation'
-		}) }}
-
+		</div>
 		<button type="submit" class="btn btn-primary">Envoyer</button>
 		{{ form_end(registrationForm) }}
 	</form>

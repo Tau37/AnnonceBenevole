@@ -31,11 +31,11 @@ class RegistrationFormType extends AbstractType
             ->add('cpostal')
             ->add('finess', IntegerType::class,[
                 'mapped' => false,
-                // 'required' => false,
+                'required' => false,
             ])
             ->add('structure', TextType::class,[
                 'mapped' => false,
-                // 'required' => false,
+                'required' => false,
             ])
             ->add('selection', ChoiceType:: class,[
                 'mapped' => false,
@@ -53,7 +53,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
-            ]) 
+            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller

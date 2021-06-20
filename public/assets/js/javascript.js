@@ -21,18 +21,35 @@ $(document).ready(function() { // charge le DOM avant d'executer le script à l'
           }
         }
       });
+      
+      // choix formulaire
+
+      $("select").change(function () {
+          let str="";
+          $("select option:selected").each(function () {
+                str += $(this).text();
+              });
+        if (str == 'Structure') {
+          $(".structure").slideDown(700);
+          // $(".structure").removeClass("popUp");
+        };
+        if (str == 'Bénévole') {
+          $(".structure").slideUp(700);
+          // $('.structure').addClass("popUp");
+        }
+      });
     // let tableauImage = Array("assets/img/bricolage.jpg", "assets/img/cuisine.jpg", "assets/img/jardinage.jpg", "assets/img/music.jpeg" , "assets/img/promenade.jpg", "assets/img/sport.jpeg", "assets/img/artplast.png"); // tableauImag=[]
     // let i = 0
     // $(".photo").click(function() {
-        
+
 
     //     if (i < tableauImage.length) {
-          
+
     //         $("#Carrouselimg").attr("src", tableauImage[i])
-            
+
     //         i++
     //         console.log(tableauImage[i]);
-            
+
     //     }
 
     //     if (i === tableauImage.length) {
