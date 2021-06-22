@@ -2,7 +2,7 @@
 {% block title %}Inscription - Les bonnes annonces
 {% endblock %}
 {% block body %}
-	<form method="post" class="container .col" style="height: 100vh;">
+	<form method="post" class="container .col">
 		{% for flashError in app.flashes('verify_email_error') %}
 			<div class="alert alert-danger" role="alert">{{ flashError }}</div>
 		{% endfor %}

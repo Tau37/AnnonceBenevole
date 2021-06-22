@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MyAccountController!{% endblock %}
+{% block title %}Page personnelle - Les bonnes annonces{% endblock %}
 
 {% block body %}
 <style>
@@ -9,108 +9,124 @@
 </style>
 
 	<div class="example-wrapper">
-		<h1 class="text-center"> Mon compte </h1>
+		<h1 class="text-center">Page personnelle</h1>
 	</div>
     <div id="avatar">
          <img src="../../assets/img/avatarUser/{{id_User}}.jpg" alt="">
     </div>
 
+<div class="d-flex flex-md-wrap flex-sm-wrap">
+  <section id="annonces" class="col-lg-6 col-md-12 col-sm-12 mb-3">
+    <h3 class="text-center">Mes annonces</h3>
+  	<div>
+  	{# image catégorie selection voir plus tard #}
+  	{# <img src={{ asset("assets/img/categorie/{{item.linkCategorie.id}}.jpg") }} alt=""> #}
 
-<section id="annonces">
-	<div>
-	{# image catégorie selection voir plus tard #}
-	{# <img src={{ asset("assets/img/categorie/{{item.linkCategorie.id}}.jpg") }} alt=""> #}
+  	</div>
+  	{# variable de différenciation des popUP #}
+  	{% set popUpNumber = 1 %}
+  	{% for item in annonces %}
 
-	</div>
-	{# variable de différenciation des popUP #}
-	{% set popUpNumber = 1 %}
-	{% for item in annonces %}
-    
-    {# <pre>
-		{{ dump(item) }}
-	</pre> #}
-	<div class="card card-centrer global">
-		{# <img class="card-img-top" src="#" alt="#"> #}
-		<div class="card-body">
-			<h5 class="card-title">{{ item.annonces }}</h5>
-			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
-			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
-			<p class="card-text">{{ item.description }}</p>
-			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
-			{# <p class="card-text">{{ item.linkCategorie.categorie }}</p>
-			<p class="card-text">{{ item.linkCategorie.id }}</p>
-			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}"> #}
-			{# <a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a> #}
-			<a href="#" id="suite{{popUpNumber}}" class="btn btn-primary">Lire la suite</a>
-			{# <a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a> #}
-			{# <p>pop numéro {{ popUpNumber }}</p> #}
-		</div>
-	</div>
-	<div class=" card card-centrer popUp" id="popUpAnnonceNum{{popUpNumber}}">
-		<div class="card-body">
-        	<h5 class="card-title">Vous lisez la suite</h5>
-			<h5 class="card-title">{{ item.annonces }}</h5>
-			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
-			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
-			<p class="card-text">{{ item.description }}</p>
-			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
-        	<br>
-        	<a href="#" class="retour">pour revenir</a>
-		</div>
-    </div>
-	
-	{# incréemntation  différenciation des popUP #}
-	{% set popUpNumber = (popUpNumber + 1) %}
-{% endfor %}
-</section>
+      {# <pre>
+  		{{ dump(item) }}
+  	</pre> #}
 
-<section id="response">
-	<div>
-	{# image catégorie selection voir plus tard #}
-	{# <img src={{ asset("assets/img/categorie/{{item.linkCategorie.id}}.jpg") }} alt=""> #}
+  	<div class="card card-centrer global mb-2">
+  		{# <img class="card-img-top" src="#" alt="#"> #}
+  		<div class="card-body">
+  			<h5 class="card-title">{{ item.annonces }}</h5>
+  			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
+  			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
+  			<p class="card-text">{{ item.description }}</p>
+  			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
+  			{# <p class="card-text">{{ item.linkCategorie.categorie }}</p>
+  			<p class="card-text">{{ item.linkCategorie.id }}</p>
+  			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}"> #}
+  			{# <a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a> #}
+  			<a href="#" id="suite{{popUpNumber}}" class="btn btn-primary">Lire la suite</a>
+  			{# <a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a> #}
+  			{# <p>pop numéro {{ popUpNumber }}</p> #}
+  		</div>
+  	</div>
+  	<div class=" card card-centrer popUp" id="popUpAnnonceNum{{popUpNumber}}">
+  		<div class="card-body">
+          	<h5 class="card-title">Vous lisez la suite</h5>
+  			<h5 class="card-title">{{ item.annonces }}</h5>
+  			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
+  			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
+  			<p class="card-text">{{ item.description }}</p>
+  			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
+          	<br>
+          	<a href="#" class="retour">pour revenir</a>
+  		</div>
+      </div>
 
-	</div>
-	{# variable de différenciation des popUP #}
-	{% set popUpNumber = 1 %}
-	{% for item in annonces %}
-    
-    {# <pre>
-		{{ dump(item) }}
-	</pre> #}
-	<div class="card card-centrer global">
-		{# <img class="card-img-top" src="#" alt="#"> #}
-		<div class="card-body">
-			<h5 class="card-title">{{ item.annonces }}</h5>
-			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
-			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
-			<p class="card-text">{{ item.description }}</p>
-			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
-			{# <p class="card-text">{{ item.linkCategorie.categorie }}</p>
-			<p class="card-text">{{ item.linkCategorie.id }}</p>
-			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}"> #}
-			{# <a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a> #}
-			<a href="#" id="suite{{popUpNumber}}" class="btn btn-primary">Lire la suite</a>
-			{# <a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a> #}
-			{# <p>pop numéro {{ popUpNumber }}</p> #}
-		</div>
-	</div>
-	<div class=" card card-centrer popUp" id="popUpAnnonceNum{{popUpNumber}}">
-		<div class="card-body">
-        	<h5 class="card-title">Vous lisez la suite</h5>
-			<h5 class="card-title">{{ item.annonces }}</h5>
-			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
-			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
-			<p class="card-text">{{ item.description }}</p>
-			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
-        	<br>
-        	<a href="#" class="retour">pour revenir</a>
-		</div>
-    </div>
-	
-	{# incréemntation  différenciation des popUP #}
-	{% set popUpNumber = (popUpNumber + 1) %}
-{% endfor %}
-</section>
+  	{# incréemntation  différenciation des popUP #}
+  	{% set popUpNumber = (popUpNumber + 1) %}
+  {% endfor %}
+    <a href="#" class="btn btn-primary auto">Toutes mes annonces</a>
+  </section>
+
+  <section id="response" class="col-lg-6 col-md-12 col-sm-12 mb-3">
+    <h3 class="text-center">Mes messages</h3>
+  	<div>
+  	{# image catégorie selection voir plus tard #}
+  	{# <img src={{ asset("assets/img/categorie/{{item.linkCategorie.id}}.jpg") }} alt=""> #}
+
+  	</div>
+  	{# variable de différenciation des popUP #}
+  	{% set popUpNumber = 1 %}
+  	{% for item in annonces %}
+
+      {# <pre>
+  		{{ dump(item) }}
+  	</pre> #}
+  	<div class="card card-centrer global mb-2">
+  		{# <img class="card-img-top" src="#" alt="#"> #}
+  		<div class="card-body">
+  			<h5 class="card-title">{{ item.annonces }}</h5>
+  			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
+  			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
+  			<p class="card-text">{{ item.description }}</p>
+  			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
+  			{# <p class="card-text">{{ item.linkCategorie.categorie }}</p>
+  			<p class="card-text">{{ item.linkCategorie.id }}</p>
+  			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}"> #}
+  			{# <a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a> #}
+  			<a href="#" id="suite{{popUpNumber}}" class="btn btn-primary">Lire la suite</a>
+  			{# <a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a> #}
+  			{# <p>pop numéro {{ popUpNumber }}</p> #}
+  		</div>
+  	</div>
+  	<div class=" card card-centrer popUp" id="popUpAnnonceNum{{popUpNumber}}">
+  		<div class="card-body">
+          	<h5 class="card-title">Vous lisez la suite</h5>
+  			<h5 class="card-title">{{ item.annonces }}</h5>
+  			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
+  			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
+  			<p class="card-text">{{ item.description }}</p>
+  			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
+          	<br>
+          	<a href="#" class="retour">pour revenir</a>
+  		</div>
+      </div>
+
+  	{# incréemntation  différenciation des popUP #}
+  	{% set popUpNumber = (popUpNumber + 1) %}
+  {% endfor %}
+  <a href="#" class="btn btn-primary auto">Tous mes messages</a>
+  </section>
+
+
+
+
+
+
+
+
+
+
+</div>
 
 
 {# déclare le nombre de popUp généré dans le script #}
