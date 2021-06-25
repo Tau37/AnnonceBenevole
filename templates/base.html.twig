@@ -23,83 +23,82 @@
 			<script src="{{ asset('assets/js/javascript.js') }}"></script>
 		{% endblock %}
 	</head>
-	<header>
-
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="{{ path('home') }}">Les bonnes annonces</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul
-					class="navbar-nav mr-auto">
-					{% if is_granted("ROLE_ADMIN") %}
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('admin') }}">Administration</a>
-						</li>
-					{% endif %}
-					<li class="nav-item active">
-							<a class="nav-link" href="{{ path('annonces') }}">Les annonces
-							</a>
-						</li>
-					{% if is_granted("ROLE_USER") %}
-						<li class="nav-item active">
-							<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion
-							</a>
-						</li>
-						<li class="nav-item active">
-							<a class="nav-link" href="{{ path('annonces_new') }}">Poster une annonce
-							</a>
-						</li>
-						<li class="nav-item active">
-							<a class="nav-link" href="{{ path('my_account') }}">Mon compte
-							</a>
-						</li>
-					{% else %}
-						<li class="nav-item active">
-							<a class="nav-link" href="{{ path('app_register') }}">Inscription
-							</a>
-						</li>
-						<li class="nav-item active">
-							<a class="nav-link" href="{{ path('app_login') }}">Connexion
-							</a>
-						</li>
-					{% endif %}
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Listes des CRUD
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="{{ path('user_index') }}">User</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="{{ path('annonces_index') }}">Annonces</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="{{ path('categories_index') }}">Catégories</a>
-						</div>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link disabled" href="#">Disabled</a>
-					</li>
-				</ul>
-				<form id="formSearch" class="form-inline my-2 my-lg-0" method="post" name="search" action="">
-					<input id="inputSearch" class="form-control mr-sm-2" type="search" name="auteur" placeholder="Search" aria-label="Search" autocomplete="off">
-					<div id="search"></div>
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
-			</div>
-		</nav>
-	</header>
-
 
 	<body>
-		{% block body %}{% endblock %}
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<a class="navbar-brand" href="{{ path('home') }}">Les bonnes annonces</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						{% if is_granted("ROLE_ADMIN") %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('admin') }}">Administration</a>
+							</li>
+						{% endif %}
+							<li class="nav-item active">
+								<a class="nav-link" href="{{ path('annonces') }}">Les annonces
+								</a>
+							</li>
+						{% if is_granted("ROLE_USER") %}
+							<li class="nav-item active">
+								<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion
+								</a>
+							</li>
+							<li class="nav-item active">
+								<a class="nav-link" href="{{ path('annonces_new') }}">Poster une annonce
+								</a>
+							</li>
+							<li class="nav-item active">
+								<a class="nav-link" href="{{ path('my_account') }}">Mon compte
+								</a>
+							</li>
+						{% else %}
+							<li class="nav-item active">
+								<a class="nav-link" href="{{ path('app_register') }}">Inscription
+								</a>
+							</li>
+							<li class="nav-item active">
+								<a class="nav-link" href="{{ path('app_login') }}">Connexion
+								</a>
+							</li>
+						{% endif %}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Listes des CRUD
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{ path('user_index') }}">User</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{{ path('annonces_index') }}">Annonces</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{{ path('categories_index') }}">Catégories</a>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link disabled" href="#">Disabled</a>
+						</li>
+					</ul>
+					<form id="formSearch" class="form-inline my-2 my-lg-0" method="post" name="search" action="">
+						<input id="inputSearch" class="form-control mr-sm-2" type="search" name="auteur" placeholder="Search" aria-label="Search" autocomplete="off">
+						<div id="search"></div>
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					</form>
+				</div>
+			</nav>
+		</header>
+
+		{% block body %}
+
+		{% endblock %}
+
+		<footer>
+			<div class="container-fluid">
+				<p>&copy copyright Les bonnes annonces 2021</p>
+			<p><a href="#">Nous contacter</a></p>
+			</div>
+		</footer>
 	</body>
-	<footer>
-		<div class="container-fluid">
-			<p>&copy copyright Les bonnes annonces 2021</p>
-		<p><a href="#">Nous contacter</a></p>
-		</div>
-		
-	</footer>
 </html>

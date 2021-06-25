@@ -64,7 +64,7 @@
   	{# incréemntation  différenciation des popUP #}
   	{% set popUpNumber = (popUpNumber + 1) %}
   {% endfor %}
-    <a href="#" class="btn btn-primary auto">Toutes mes annonces</a>
+    <a href="{{ path ('list') }}" class="btn btn-primary auto">Toutes mes annonces</a>
   </section>
 
   <section id="response" class="col-lg-6 col-md-12 col-sm-12 mb-3">
@@ -114,7 +114,7 @@
   	{# incréemntation  différenciation des popUP #}
   	{% set popUpNumber = (popUpNumber + 1) %}
   {% endfor %}
-  <a href="#" class="btn btn-primary auto">Tous mes messages</a>
+  <a href="{{ path ('messages') }}" class="btn btn-primary auto">Tous mes messages</a>
   </section>
 
 
