@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Controller;
-
+/* Modif */
+use app\Entity\User;
+use App\Repository\UserRepository;
+/*       */
 use App\Repository\AnnoncesRepository;
 use App\Repository\CategoriesRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,12 +16,13 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home", methods={"GET"})
      */
-    public function index(AnnoncesRepository $annoncesRepository, CategoriesRepository $categoriesRepository): Response
+    public function index(AnnoncesRepository $annoncesRepository, CategoriesRepository $categoriesRepository, UserRepository $userRepository): Response
     {
         $categorie = $categoriesRepository->findAll();
-        //dd($categorie);
+        // $user = $userRepository->findAll();
         return $this->render('home/index.html.twig', [
-        'categorie' => $categorie
+        'categorie' => $categorie,
+        // 'user' => $user
         ]);
     }
 
@@ -43,5 +47,4 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
-
 }

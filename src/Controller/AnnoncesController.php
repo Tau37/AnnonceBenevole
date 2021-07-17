@@ -29,16 +29,16 @@ class AnnoncesController extends AbstractController
             $id_categorie = $_GET["id_categorie"];
             $id_categorie = $categoriesRepository->findBy(["id"=> $id_categorie]);
             $annonce = $annoncesRepository->findBy(["linkCategorie"=> $id_categorie]);
-            //dd($annonce);
+            // dd($annonce);
         } else {
             $id_categorie = null;
             $annonce = $annoncesRepository->findAll();
         }
 
-        
+
         return $this->render('annonces/index.html.twig', [
             'annonces' =>  $annonce,
-            
+
         ]);
     }
 
@@ -58,12 +58,12 @@ class AnnoncesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // je dois récupere l'id mon user
             $annonce->setLinkAnnonce($this->getUser());
-            
+
             date_default_timezone_set('Europe/Paris');
 
             $annonce->setDate(new \DateTime('now'));
             $annonce->setValide(0); // Les annonces seront validé par l'administrateur plus tard
-            
+
             // dd($annonce);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);

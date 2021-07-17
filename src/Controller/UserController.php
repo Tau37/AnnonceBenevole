@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
 /**
  * @Route("/user")
  */
@@ -47,6 +47,25 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    // problème ordre .htacces trouvé graceà la commande php bin/console debug:router
+    /**
+     * @Route("/ajax", name="user_ajax", methods={"GET","POST"})
+     */
+    public function ajax(Request $request, UserRepository $userRepository): Response
+     {
+       $structuresMap = $userRepository->findStructureCrdn();
+       // dd($structuresMap);
+       if ($request->isXmlHttpRequest() || $request->query->get('showJson') == 1) {
+          $jsonData = array();
+          foreach($structuresMap as $user) {
+             $jsonData[] = $user;
+          }
+          // dd(new JsonResponse($jsonData));
+          return new JsonResponse($jsonData);
+       // } else {
+       //    return $this->render('/user_ajax/ajax.html.twig');
+       }
+    }
 
     /**
      * @Route("/{id}", name="user_show", methods={"GET"})
@@ -65,13 +84,10 @@ class UserController extends AbstractController
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('user_index');
         }
-
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
@@ -88,7 +104,6 @@ class UserController extends AbstractController
             $entityManager->remove($user);
             $entityManager->flush();
         }
-
         return $this->redirectToRoute('user_index');
     }
 }
