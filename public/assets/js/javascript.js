@@ -21,7 +21,7 @@ $(document).ready(function() { // charge le DOM avant d'executer le script à l'
           }
         }
       });
-      
+
       // choix formulaire
 
       $("select").change(function () {
@@ -31,13 +31,46 @@ $(document).ready(function() { // charge le DOM avant d'executer le script à l'
               });
         if (str == 'Structure') {
           $(".structure").slideDown(700);
-          // $(".structure").removeClass("popUp");
         };
         if (str == 'Bénévole') {
           $(".structure").slideUp(700);
-          // $('.structure').addClass("popUp");
         }
       });
+// ajax données sur les structures
+      $.ajax({
+        url : '/user/ajax',
+        method : 'GET',
+        dataType : 'json'
+      })
+        .done ( function(data){
+          initMap(data)
+        })
+        .fail ( function(){
+          console.log('error');
+      });
+
+// OpenStreetMap
+
+      function initMap(donnees = NULL){
+        let carte = L.map('streetmap').setView([46.225, 0.132], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+        {attribution: 'données <a href="//osm.org/copyright">OpenstreetMap</a>/ODbl - rendu <a href="//openstreetmap.fr">OSM France</a>',
+          minZoom: 1,
+          maxZoom: 20
+        }).addTo(carte);
+        let markers = L.markerClusterGroup();
+        for (donnee in donnees){
+          let marqueur = L.marker([donnees[donnee].lat, donnees[donnee].lon]);//.addTo(carte) Utilisation de MarkerCluster;
+          marqueur.bindPopup("<p style='color: crimson; text-align: center;'>"+donnees[donnee].structure+"<a style='color: crimson; display: block;' href='#'>Contacter</a></p>");
+          markers.addLayer(marqueur);
+        }
+        carte.addLayer(markers);
+      }
+
+
+
+
+
     // let tableauImage = Array("assets/img/bricolage.jpg", "assets/img/cuisine.jpg", "assets/img/jardinage.jpg", "assets/img/music.jpeg" , "assets/img/promenade.jpg", "assets/img/sport.jpeg", "assets/img/artplast.png"); // tableauImag=[]
     // let i = 0
     // $(".photo").click(function() {
