@@ -9,6 +9,7 @@
 				           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 			<link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 			<link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
@@ -21,6 +22,7 @@
 
 		{% block javascripts %}
 			{#{{ encore_entry_script_tags('app') }}#}
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -64,6 +66,10 @@
 								<a class="nav-link" href="{{ path('my_account') }}">Mon compte
 								</a>
 							</li>
+							<li class="nav-item active">
+								<a class="nav-link" href="{{ path("messages") }}">Messagerie</a>
+								</a>
+							</li>
 						{% else %}
 							<li class="nav-item active">
 								<a class="nav-link" href="{{ path('app_register') }}">Inscription
@@ -98,6 +104,13 @@
 				</div>
 			</nav>
 		</header>
+		{# alert envoi message #}
+		{% for message in app.flashes("message") %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
 
 		{% block body %}
 

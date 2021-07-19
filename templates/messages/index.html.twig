@@ -8,12 +8,48 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
+<section class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Messagerie ✉</h1>
+				<p>Résumé de la messagerie</p>
+				<p>Reçus : {{ app.user.received|length }}</p>
+				<p>Envoyés : {{ app.user.sent|length }}</p>
+				<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+					Voir mes dossiers
+				</a>
+        <a href="{{path('my_account')}}" class="btn btn-primary auto">Page perso</a>
+        {# <a href="#" class="btn btn-primary">Envoyer un message</a> #}
+                <a href="{{path("send")}}" class="btn btn-primary">Envoyer un message</a>
+			</div>
+		</div>
+	</section>
+	<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+		<div class="offcanvas-header">
+			<h2 class="offcanvas-title" id="offcanvasExampleLabel">Mes dossiers</h2>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+            <div class="list-group">
+                <a href="{{ path("messages") }}" class="list-group-item list-group-item-action active">Accueil</a>
+            </div>
+            <div class="list-group">
+              {# <a href="#" class="list-group-item list-group-item-action">Boîte de réception</a> #}
+                <a href="{{ path("received") }}" class="list-group-item list-group-item-action">Boîte de réception</a>
+            </div>
+            <div class="list-group">
+              {# <a href="#" class="list-group-item list-group-item-action">Eléments envoyés</a> #}
+                <a href="{{ path("sent") }}" class="list-group-item list-group-item-action">Eléments envoyés</a>
+            </div>
+		</div>
+	</div>
+
+  
+{# <div class="example-wrapper">
     <h1 class="text-center">Tous mes messages 👍</h1>
 </div>
 <section class="col-lg-10 col-md-10 col-sm-12 m-auto">
   <div class="card card-centrer global mb-2">
-    {# <img class="card-img-top" src="#" alt="#"> #}
     <div class="card-body">
       <h5 class="card-title">Chant</h5>
       <p class="card-title">De : Jean-Michel</p>
@@ -24,42 +60,8 @@
       <a href="#" title="supprimer" class="ml-3"><img id="trash" src="../../assets/img/logo/trash.png" alt="Logo supprimer"></a>
     </div>
   </div>
-  <div class="card card-centrer global mb-2">
-    {# <img class="card-img-top" src="#" alt="#"> #}
-    <div class="card-body">
-      <h5 class="card-title">Peinture</h5>
-      <p class="card-title">De : Micha</p>
-      <p class="card-text">posté le : 20/05/2021 à 18h30</p>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere, sem ut congue gravida, ante magna aliquet turpis, a cursus dui velit vel ipsum. Donec elementum vitae tellus eu condimentum</p>
-      <p class="card-text">Art plastique <img src="../../assets/img/logo/6.png" alt="Art plastique"></p>
-      <a href="#" class="btn btn-primary">Afficher</a>
-      <a href="#" title="supprimer" class="ml-3"><img id="trash" src="../../assets/img/logo/trash.png" alt="Logo supprimer"></a>
-    </div>
-  </div>
-  <div class="card card-centrer global mb-2">
-    {# <img class="card-img-top" src="#" alt="#"> #}
-    <div class="card-body">
-      <h5 class="card-title">Chant</h5>
-      <p class="card-title">De : Jean-Michel</p>
-      <p class="card-text">posté le : 13/05/2021 à 15h01</p>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere, sem ut congue gravida, ante magna aliquet turpis, a cursus dui velit vel ipsum. Donec elementum vitae tellus eu condimentum</p>
-      <p class="card-text">musique / Chant <img src="../../assets/img/logo/7.png" alt="Musique et chant"></p>
-      <a href="#" class="btn btn-primary">Afficher</a>
-      <a href="#" title="supprimer" class="ml-3"><img id="trash" src="../../assets/img/logo/trash.png" alt="Logo supprimer"></a>
-    </div>
-  </div>
-  <div class="card card-centrer global mb-2">
-    {# <img class="card-img-top" src="#" alt="#"> #}
-    <div class="card-body">
-      <h5 class="card-title">Chant</h5>
-      <p class="card-title">De : Jean-Michel</p>
-      <p class="card-text">posté le : 13/05/2021 à 15h01</p>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere, sem ut congue gravida, ante magna aliquet turpis, a cursus dui velit vel ipsum. Donec elementum vitae tellus eu condimentum</p>
-      <p class="card-text">musique / Chant <img src="../../assets/img/logo/7.png" alt="Musique et chant"></p>
-      <a href="#" class="btn btn-primary">Afficher</a>
-      <a href="#" title="supprimer" class="ml-3"><img id="trash" src="../../assets/img/logo/trash.png" alt="Logo supprimer"></a>
-    </div>
-  </div>
-  <a href="{{ path ('my_account') }}" class="btn btn-primary auto">Page perso</a>
-</section>
+</section> #}
+
 {% endblock %}
+
+
