@@ -48,6 +48,18 @@
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('admin') }}">Administration</a>
 							</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Listes des CRUD
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{ path('user_index') }}">User</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{{ path('annonces_index') }}">Annonces</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{{ path('categories_index') }}">Catégories</a>
+							</div>
+						</li>
 						{% endif %}
 							<li class="nav-item active">
 								<a class="nav-link" href="{{ path('annonces') }}">Les annonces
@@ -80,27 +92,15 @@
 								</a>
 							</li>
 						{% endif %}
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Listes des CRUD
-							</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="{{ path('user_index') }}">User</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{ path('annonces_index') }}">Annonces</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{ path('categories_index') }}">Catégories</a>
-							</div>
-						</li>
-						<li class="nav-item">
+						{# <li class="nav-item">
 							<a class="nav-link disabled" href="#">Disabled</a>
-						</li>
+						</li> #}
 					</ul>
-					<form id="formSearch" class="form-inline my-2 my-lg-0" method="post" name="search" action="">
+					{# <form id="formSearch" class="form-inline my-2 my-lg-0" method="post" name="search" action="">
 						<input id="inputSearch" class="form-control mr-sm-2" type="search" name="auteur" placeholder="Search" aria-label="Search" autocomplete="off">
 						<div id="search"></div>
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-					</form>
+					</form> #}
 				</div>
 			</nav>
 		</header>

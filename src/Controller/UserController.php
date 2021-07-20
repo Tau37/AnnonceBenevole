@@ -78,7 +78,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="user_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, User $user): Response
     {
