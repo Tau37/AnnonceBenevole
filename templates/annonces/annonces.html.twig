@@ -37,11 +37,11 @@
 	<div class="card card-centrer global">
 		{# <img class="card-img-top" src="#" alt="#"> #}
 		<div class="card-body">
-			<h5 class="card-title">{{ item.annonces }}</h5>
+			<p class="card-text text-center">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
+			<h5 class="card-title">Titre : {{ item.annonces }}</h5>
+			<p class="card-text">Annonce : {{ item.description }}</p>
 			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
-			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
-			<p class="card-text">{{ item.description }}</p>
-			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
+			<p class="card-text">posté le : {{ item.date ? item.date|date('d/m/Y à h:i') }}</p>
 			{# <p class="card-text">{{ item.linkCategorie.categorie }}</p>
 			<p class="card-text">{{ item.linkCategorie.id }}</p>
 			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}"> #}
@@ -53,14 +53,14 @@
 	</div>
 	<div class=" card card-centrer popUp" id="popUpAnnonceNum{{popUpNumber}}">
 		<div class="card-body">
-        	<h5 class="card-title">Vous lisez la suite</h5>
+        	<!-- <h5 class="card-title">Vous lisez la suite</h5> -->
 			<h5 class="card-title">{{ item.annonces }}</h5>
-			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
-			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
 			<p class="card-text">{{ item.description }}</p>
+			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
+			<p class="card-text">posté le : {{ item.date ? item.date|date('d/m/Y à h:i') }} </p>
 			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
         	<br>
-        	<a href="#" class="retour">pour revenir</a>
+        	<a href="#" class="btn btn-primary retour">retour</a>
 		</div>
     </div>
 

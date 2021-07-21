@@ -28,7 +28,7 @@ class MessagesController extends AbstractController
     {
         $message = new Messages;
         $form = $this->createForm(MessagesType::class, $message);
-        
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){

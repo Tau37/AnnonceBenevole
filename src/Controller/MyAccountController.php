@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-
 use App\Repository\AnnoncesRepository;
 use App\Repository\CategoriesRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +17,7 @@ class MyAccountController extends AbstractController
         // récupéré l'id de l'utilisateur courant
         $id_User = $this->getUser()->getId();
         //dd($user);
-        
+
         if (isset($id_User) && !empty($id_User)) {
             $annonces = $annoncesRepository->findBy(["linkAnnonce" => $id_User, "valide" => "1"], ["date" => "DESC"]);
 

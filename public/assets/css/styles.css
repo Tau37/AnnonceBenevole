@@ -6,10 +6,16 @@
     font-family: 'Poppins', sans-serif;
 } */
 
+body {
+    /* height: calc(100vh + -100px); */
+    min-height: 100vh !important;
+}
 
-/* body {
-    height: calc(100vh + -100px);
-} */
+section>div>p {
+    font-size: 1.4em;
+    text-align: justify;
+    margin: 60px auto;
+}
 
 
 /*CARROUSELLE*/
@@ -48,7 +54,8 @@
     text-align: center;
 }
 
-.owl-dots {
+
+/* .owl-dots {
     text-align: center;
     margin-top: 40px;
 }
@@ -67,7 +74,7 @@
 .owl-dot.active,
 .owl-dot:hover {
     background: #0072bc!important;
-}
+} */
 
 
 /* FIN CARROUSELLE*/
@@ -97,9 +104,11 @@
 }
 
 .popUpAnnonce {
-    position: absolute;
-    top: 30%;
-    right: 10rem;
+    /* position: absolute;
+    top: 30%; Fifou,            tu fais encore chier :-)
+    right: 10rem; */
+    /* position: fixed; */
+    margin: auto;
     display: block;
     text-align: center;
     width: 80%;
