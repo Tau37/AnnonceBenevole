@@ -137,6 +137,6 @@ footer .container-fluid {
     background-color: #ecf0f1;
     margin: 80px 0px 0px 0px;
     bottom: 0;
-    z-index: 10000000000000000000000000000000000000000;
+    z-index: 10000;
     /* 🤣 cherche l'embrouille */
 }
