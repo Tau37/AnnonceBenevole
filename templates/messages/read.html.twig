@@ -10,6 +10,7 @@
 				<h1>Messagerie</h1>
                 <h2>{{ message.title }}</h2>
                 <p>Message de {{ message.sender.email }}</p>
+				<p>Message envoyé à {{ message.recipient.email }}</p>
                 <p>Le {{ message.createdAt|date }}</p>
                 <div>{{ message.message }}</div>
 				<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">

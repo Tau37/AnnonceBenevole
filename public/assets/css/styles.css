@@ -107,7 +107,9 @@ section>div>p {
     /* position: absolute;
     top: 30%; Fifou,            tu fais encore chier :-)
     right: 10rem; */
-    /* position: fixed; */
+    position: fixed;
+    display: flex;
+    top: 30vh;
     margin: auto;
     display: block;
     text-align: center;
