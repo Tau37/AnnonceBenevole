@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home
+{% block title %}Accueil - Les bonnes annonces
 {% endblock %}
 
 {% block body %}
@@ -18,37 +18,39 @@
 	</style> -->
 
 	<div class="example-wrapper">
-		<h1 class="text-center">Les bonnes annonces 👍 </h1>
+		<h1 class="text-center mt-4 mb-4">Les bonnes annonces 👍 </h1>
+		<section>
+			<div class="container">
+				<p>
+					Le site qui permet de créer du lien intergénérationnel. Vous
+					souhaitez partager vos centres d' intéret, vos loisirs, vos savoirs
+					faire avec des personnes âgées , isolées ou en situation de
+					handicap, ce site met en relation les établissements et les
+					bénévoles.
+				</p>
+			</div>
+		</section>
 	</div>
 	{# {{ dump(user) }} #}
 	<div class="wrapper">
-         <div class="carousel owl-carousel">
-		 	{% for item in categorie %}
+		<div class="carousel owl-carousel">
+			{% for item in categorie %}
 			<div class="card card-1">
 				<a href="{{ path('annonces', {'id_categorie': item.id}) }}" title="{{item.categorie}}"><img src="assets/img/categorie/{{item.id}}.jpg" alt="{{item.categorie}}">
 					<div class="bottom">{{item.categorie}}</div></a>
-				</div>
+			</div>
 			{% endfor %}
-         </div>
-    </div>
+		</div>
+  </div>
 
 	{# <div id="Carrousel" class="diaporama">
 			<i class="fas fa-chevron-left photo"></i>
             <img id="Carrouselimg" src="assets/img/artplast.png" alt="">
 			<i class="fas fa-chevron-right photo"></i>
     </div> #}
-	<section>
-		<div class="container">
-			<p>
-				Le site qui permet de créer du lien intergénérationnel. Vous
-				souhaitez partager vos centres d' intéret, vos loisirs, vos savoirs
-				faire avec des personnes âgées , isolées ou en situation de
-				handicap, ce site met en relation les établissements et les
-				bénévoles
-			</p>
-		</div>
-	</section>
-	<section>
+
+	<section class="map">
+		<h2 class="text-center">Trouvez votre structure</h2>
 		<div class="container mb-4">
 			<div id="streetmap"></div>
 		</div>
