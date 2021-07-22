@@ -73,6 +73,9 @@ class AnnoncesController extends AbstractController
             $entityManager->persist($annonce);
             $entityManager->flush();
 
+            if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
+                return $this->redirect($this->generateUrl('my_account')); 
+            }
             return $this->redirectToRoute('annonces_index');
         }
 
@@ -87,6 +90,11 @@ class AnnoncesController extends AbstractController
      */
     public function show(Annonces $annonce, CategoriesRepository $categoriesRepository): Response
     {
+        if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
+            if($annonce->getLinkAnnonce()->getId() !=  $this->getUser()->getId() ){
+                return $this->redirect($this->generateUrl('my_account')); 
+              }
+        }
         //dd($annonce);
         $categorie = $annonce->getLinkCategorie()->getCategorie();
         $nom = $annonce->getLinkAnnonce()->getNom();
@@ -135,7 +143,9 @@ class AnnoncesController extends AbstractController
             $entityManager->remove($annonce);
             $entityManager->flush();
         }
-
+        if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
+            return $this->redirect($this->generateUrl('my_account')); 
+        }
         return $this->redirectToRoute('annonces_index');
     }
 }

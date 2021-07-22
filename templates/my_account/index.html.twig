@@ -34,7 +34,7 @@
   		{# <img class="card-img-top" src="#" alt="#"> #}
   		<div class="card-body">
         <p class="card-text text-center">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
-  			<h5 class="card-title">Titre : {{ item.annonces }}</h5>
+  		<h5 class="card-title">Titre : {{ item.annonces }}</h5>
         <p class="card-text">Annonce : {{ item.description }}</p>
   			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
   			<p class="card-text">posté le : {{ item.date ? item.date|date('d/m/Y à h:i') }} heures </p>
@@ -50,8 +50,9 @@
   			<p class="card-text">{{ item.linkCategorie.id }}</p>
   			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}"> #}
   			{# <a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a> #}
-			  <a href="{{ path('annonces_edit', {'id': item.id}) }}" class="btn btn-primary">Modifier</a></a>
-        <a href="#" title="supprimer" class="ml-3"><img id="trash" src="../../assets/img/logo/trash.png" alt="Logo supprimer"></a>
+		<a href="{{ path('annonces_edit', {'id': item.id}) }}" class="btn btn-primary">Modifier</a></a>
+		{{ include('annonces/_delete_form.html.twig') }}
+        {# <a href="{{ path('annonces_delete', {'id': item.id}) }}" title="supprimer" class="ml-3"><img id="trash" src="../../assets/img/logo/trash.png" alt="Logo supprimer"></a> #}
   			{# <a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a> #}
   			{# <p>pop numéro {{ popUpNumber }}</p> #}
   		</div>
