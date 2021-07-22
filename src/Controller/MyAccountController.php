@@ -19,7 +19,8 @@ class MyAccountController extends AbstractController
         //dd($user);
 
         if (isset($id_User) && !empty($id_User)) {
-            $annonces = $annoncesRepository->findBy(["linkAnnonce" => $id_User, "valide" => "1"], ["date" => "DESC"]);
+            // $annonces = $annoncesRepository->findBy(["linkAnnonce" => $id_User, "valide" => "1"], ["date" => "DESC"]);
+            $annonces = $annoncesRepository->findBy(["linkAnnonce" => $id_User], ["date" => "DESC"]);
 
         } else {
             $id_User = null;
