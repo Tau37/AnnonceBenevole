@@ -46,7 +46,7 @@ security:
          - { path: ^/user/new, roles: ROLE_ADMIN }
          - { path: ^/user/edit, roles: ROLE_ADMIN }
          - { path: ^/user/\d+$, roles: ROLE_ADMIN }
-         - { path: ^/annonces/edit, roles: ROLE_ADMIN }
+        #  - { path: ^/annonces/edit, roles: ROLE_ADMIN }
          - { path: ^/annonces/\d+$, roles: ROLE_ADMIN }
          - { path: ^/categories, roles: ROLE_ADMIN }
          - { path: ^/annonces/new, roles: ROLE_USER }

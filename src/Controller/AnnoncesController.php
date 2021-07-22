@@ -23,6 +23,10 @@ class AnnoncesController extends AbstractController
      */
     public function index(AnnoncesRepository $annoncesRepository, CategoriesRepository $categoriesRepository): Response
     {
+        /* sécurité du crud */
+        if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
+            return $this->redirect($this->generateUrl('home')); 
+        }
 
         // je récupére le nom des catégorie en fonction de l'id de la liaison (linkCategorie)
         if (isset($_GET["id_categorie"]) && !empty($_GET["id_categorie"])) {
@@ -98,6 +102,14 @@ class AnnoncesController extends AbstractController
      */
     public function edit(Request $request, Annonces $annonce): Response
     {
+
+        /* sécurité de l'édition*/
+        if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
+            if($annonce->getLinkAnnonce()->getId() !=  $this->getUser()->getId() ){
+                return $this->redirect($this->generateUrl('my_account')); 
+              }
+        }
+
         $form = $this->createForm(AnnoncesType::class, $annonce);
         $form->handleRequest($request);
 
