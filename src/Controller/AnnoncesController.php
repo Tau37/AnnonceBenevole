@@ -73,6 +73,8 @@ class AnnoncesController extends AbstractController
             $entityManager->persist($annonce);
             $entityManager->flush();
 
+            $this->addFlash("annonceSucess", "Annonce enregistré avec succès");
+
             if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
                 return $this->redirect($this->generateUrl('my_account')); 
             }
