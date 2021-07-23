@@ -1,20 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil - Les bonnes annonces
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<!-- <style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style> -->
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<div class="example-wrapper">
+		<h1 class="text-center mt-4 mb-4">Les bonnes annonces 👍 </h1>
+		<section>
+			<div class="container">
+				<p>
+					Le site qui créé du lien intergénérationnel.
+					Vous souhaitez partager vos centres d'intéret,
+					vos loisirs, vos savoirs faire au travers d'activités
+					avec des personnes âgées, isolées ou en situation de handicap, ce site met en relation les établissements et les bénévoles.
+				</p>
+			</div>
+		</section>
+	</div>
+	{# {{ dump(user) }} #}
+	<div class="wrapper">
+		<div class="carousel owl-carousel">
+			{% for item in categorie %}
+			<div class="card card-1">
+				<a href="{{ path('annonces', {'id_categorie': item.id}) }}" title="{{item.categorie}}"><img src="assets/img/categorie/{{item.id}}.jpg" alt="{{item.categorie}}">
+					<div class="bottom">{{item.categorie}}</div></a>
+			</div>
+			{% endfor %}
+		</div>
+  </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/symfony/AnnonceBenevole/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/symfony/AnnonceBenevole/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+	{# <div id="Carrousel" class="diaporama">
+			<i class="fas fa-chevron-left photo"></i>
+            <img id="Carrouselimg" src="assets/img/artplast.png" alt="">
+			<i class="fas fa-chevron-right photo"></i>
+    </div> #}
+
+	<section class="map">
+		<h3 class="text-center">Trouvez la structure la plus proche de chez vous</h3>
+		<div class="container mb-4">
+			<div id="streetmap"></div>
+		</div>
+	</section>
+
+
 {% endblock %}

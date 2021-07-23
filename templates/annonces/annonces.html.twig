@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Annonces - Les bonnes annonces{% endblock %}
+
+{% block body %}
+<script src="{{ asset('assets/js/annonces.js') }}"></script>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1 class="text-center mt-4 mb-4">Les annonces 👍 </h1>
+	</div>
+
+<section id="annonces">
+	<div>
+	{# image catégorie selection voir plus tard #}
+	{# <img src={{ asset("assets/img/categorie/{{item.linkCategorie.id}}.jpg") }} alt=""> #}
+
+	</div>
+	{# variable de différenciation des popUP #}
+	{% set popUpNumber = 1 %}
+	{% for item in annonces %}
+
+    {# <pre>
+		{{ dump(item) }}
+	</pre> #}
+	<div class="card card-centrer global">
+		{# <img class="card-img-top" src="#" alt="#"> #}
+		<div class="card-body">
+			<p class="card-text text-center">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
+			<h5 class="card-title">Titre : {{ item.annonces }}</h5>
+			<p class="card-text">Annonce : {{ item.description }}</p>
+			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
+			<p class="card-text">posté le : {{ item.date ? item.date|date('d/m/Y à h:i') }}</p>
+			{# <p class="card-text">{{ item.linkCategorie.categorie }}</p>
+			<p class="card-text">{{ item.linkCategorie.id }}</p>
+			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}"> #}
+			{# <a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a> #}
+			<a href="#" id="suite{{popUpNumber}}" class="btn btn-primary">Lire la suite</a>
+			{% if is_granted("ROLE_USER") == false %}
+			<a href="{{ path("app_register") }}" class="btn btn-primary">Inscrivez-vous !</a>
+			<a href="{{ path("app_login") }}" class="btn btn-primary">Connectez-vous !</a>
+			{% else %}
+			<a href="{{ path("send", {'id': item.id}) }}" class="btn btn-primary">Répondre à l'annonces</a>
+			{% endif %}
+			{# <p>pop numéro {{ popUpNumber }}</p> #}
+		</div>
+	</div>
+	<div class=" card card-centrer popUp" id="popUpAnnonceNum{{popUpNumber}}">
+		<div class="card-body popUpCenter">
+        	<!-- <h5 class="card-title">Vous lisez la suite</h5> -->
+			<h5 class="card-title">{{ item.annonces }}</h5>
+			<p class="card-text">{{ item.description }}</p>
+			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
+			<p class="card-text">posté le : {{ item.date ? item.date|date('d/m/Y à h:i') }} </p>
+			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
+        	<br>
+        	<a href="#" class="btn btn-primary retour">retour</a>
+		</div>
+    </div>
+
+	{# incréemntation  différenciation des popUP #}
+	{% set popUpNumber = (popUpNumber + 1) %}
+{% endfor %}
+</section>
+
+{# déclare le nombre de popUp généré dans le script #}
+<script> popUpNumber = {{ popUpNumber }} </script>
+
+
+{% endblock %}

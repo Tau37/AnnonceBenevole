@@ -63,9 +63,46 @@ class User implements UserInterface
      */
     private $annonces;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $finess;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $structure;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $cpostal;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $lon;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $lat;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="sender", orphanRemoval=true)
+     */
+    private $sent;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="recipient", orphanRemoval=true)
+     */
+    private $received;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
+        $this->sent = new ArrayCollection();
+        $this->received = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -221,6 +258,126 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($annonce->getLinkAnnonce() === $this) {
                 $annonce->setLinkAnnonce(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getFiness(): ?int
+    {
+        return $this->finess;
+    }
+
+    public function setFiness(?int $finess): self
+    {
+        $this->finess = $finess;
+
+        return $this;
+    }
+
+    public function getStructure(): ?string
+    {
+        return $this->structure;
+    }
+
+    public function setStructure(?string $structure): self
+    {
+        $this->structure = $structure;
+
+        return $this;
+    }
+
+    public function getCpostal(): ?int
+    {
+        return $this->cpostal;
+    }
+
+    public function setCpostal(int $cpostal): self
+    {
+        $this->cpostal = $cpostal;
+
+        return $this;
+    }
+
+    public function getLon(): ?float
+    {
+        return $this->lon;
+    }
+
+    public function setLon(?float $lon): self
+    {
+        $this->lon = $lon;
+
+        return $this;
+    }
+
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
+
+    public function setLat(?float $lat): self
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Messages[]
+     */
+    public function getSent(): Collection
+    {
+        return $this->sent;
+    }
+
+    public function addSent(Messages $sent): self
+    {
+        if (!$this->sent->contains($sent)) {
+            $this->sent[] = $sent;
+            $sent->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSent(Messages $sent): self
+    {
+        if ($this->sent->removeElement($sent)) {
+            // set the owning side to null (unless already changed)
+            if ($sent->getSender() === $this) {
+                $sent->setSender(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Messages[]
+     */
+    public function getReceived(): Collection
+    {
+        return $this->received;
+    }
+
+    public function addReceived(Messages $received): self
+    {
+        if (!$this->received->contains($received)) {
+            $this->received[] = $received;
+            $received->setRecipient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReceived(Messages $received): self
+    {
+        if ($this->received->removeElement($received)) {
+            // set the owning side to null (unless already changed)
+            if ($received->getRecipient() === $this) {
+                $received->setRecipient(null);
             }
         }
 

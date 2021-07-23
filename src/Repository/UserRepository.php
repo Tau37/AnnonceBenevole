@@ -64,4 +64,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         ;
     }
     */
+
+    public function findStructureCrdn()
+    {
+        return $this->createQueryBuilder('u') // u : alias de la table user
+            ->select('u.structure , u.lat, u.lon')// liste des champs à sélectionner
+            ->andWhere('u.structure IS NOT NULL', 'u.lon IS NOT NULL', 'u.lat IS NOT NULL')// condition (structure n'est pas NULL)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

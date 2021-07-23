@@ -2,13 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Annonces;
+use App\Entity\Categories;
 use App\Form\AnnoncesType;
 use App\Repository\AnnoncesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoriesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/annonces")
@@ -18,12 +21,32 @@ class AnnoncesController extends AbstractController
     /**
      * @Route("/", name="annonces_index", methods={"GET"})
      */
-    public function index(AnnoncesRepository $annoncesRepository): Response
+    public function index(AnnoncesRepository $annoncesRepository, CategoriesRepository $categoriesRepository): Response
     {
+        /* sécurité du crud */
+        if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
+            return $this->redirect($this->generateUrl('home'));
+        }
+
+        // je récupére le nom des catégorie en fonction de l'id de la liaison (linkCategorie)
+        if (isset($_GET["id_categorie"]) && !empty($_GET["id_categorie"])) {
+            $id_categorie = $_GET["id_categorie"];
+            $id_categorie = $categoriesRepository->findBy(["id"=> $id_categorie]);
+            $annonce = $annoncesRepository->findBy(["linkCategorie"=> $id_categorie]);
+            // dd($annonce);
+        } else {
+            $id_categorie = null;
+            $annonce = $annoncesRepository->findAll();
+        }
+
+
         return $this->render('annonces/index.html.twig', [
-            'annonces' => $annoncesRepository->findAll(),
+            'annonces' =>  $annonce,
+
         ]);
     }
+
+
 
     /**
      * @Route("/new", name="annonces_new", methods={"GET","POST"})
@@ -33,12 +56,28 @@ class AnnoncesController extends AbstractController
         $annonce = new Annonces();
         $form = $this->createForm(AnnoncesType::class, $annonce);
         $form->handleRequest($request);
-
+        if ($this->getUser() === Null) {
+            return $this->redirectToRoute('app_login');
+        }
         if ($form->isSubmitted() && $form->isValid()) {
+            // je dois récupere l'id mon user
+            $annonce->setLinkAnnonce($this->getUser());
+
+            date_default_timezone_set('Europe/Paris');
+
+            $annonce->setDate(new \DateTime('now'));
+            $annonce->setValide(0); // Les annonces seront validé par l'administrateur plus tard
+
+            // dd($annonce);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);
             $entityManager->flush();
 
+            $this->addFlash("annonceSucess", "Annonce enregistré avec succès");
+
+            if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
+                return $this->redirect($this->generateUrl('my_account'));
+            }
             return $this->redirectToRoute('annonces_index');
         }
 
@@ -51,18 +90,36 @@ class AnnoncesController extends AbstractController
     /**
      * @Route("/{id}", name="annonces_show", methods={"GET"})
      */
-    public function show(Annonces $annonce): Response
+    public function show(Annonces $annonce, CategoriesRepository $categoriesRepository): Response
     {
+        if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
+            if($annonce->getLinkAnnonce()->getId() !=  $this->getUser()->getId() ){
+                return $this->redirect($this->generateUrl('my_account'));
+              }
+        }
+        //dd($annonce);
+        $categorie = $annonce->getLinkCategorie()->getCategorie();
+        $nom = $annonce->getLinkAnnonce()->getNom();
         return $this->render('annonces/show.html.twig', [
             'annonce' => $annonce,
+            'nom' => $nom,
+            'categorie' => $categorie,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="annonces_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="annonces_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Annonces $annonce): Response
     {
+
+        /* sécurité de l'édition*/
+        if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
+            if($annonce->getLinkAnnonce()->getId() !=  $this->getUser()->getId() ){
+                return $this->redirect($this->generateUrl('my_account'));
+              }
+        }
+
         $form = $this->createForm(AnnoncesType::class, $annonce);
         $form->handleRequest($request);
 
@@ -88,7 +145,9 @@ class AnnoncesController extends AbstractController
             $entityManager->remove($annonce);
             $entityManager->flush();
         }
-
+        if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
+            return $this->redirect($this->generateUrl('my_account'));
+        }
         return $this->redirectToRoute('annonces_index');
     }
 }

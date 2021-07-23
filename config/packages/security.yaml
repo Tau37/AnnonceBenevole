@@ -32,8 +32,23 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
+    # Definition de la hierarchie des rôles
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_USER, ROLE_STRUCTURE]
+        ROLE_STRUCTURE:   ROLE_USER
+
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/admin, roles: ROLE_ADMIN }
+        #  - { path: ^/profile, roles: ROLE_USER }
+        #  - { path: ^/user, roles: ROLE_ADMIN }
+         - { path: ^/user/new, roles: ROLE_ADMIN }
+         - { path: ^/user/edit, roles: ROLE_ADMIN }
+         - { path: ^/user/\d+$, roles: ROLE_ADMIN }
+        #  - { path: ^/annonces/edit, roles: ROLE_ADMIN }
+        #  - { path: ^/annonces/\d+$, roles: ROLE_ADMIN }
+         - { path: ^/categories, roles: ROLE_ADMIN }
+         - { path: ^/annonces/new, roles: ROLE_USER }
+         - { path: ^/my/account, roles: ROLE_USER }
+
