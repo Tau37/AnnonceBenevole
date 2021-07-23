@@ -25,12 +25,13 @@ a {
 a:hover{
   color: #000;
 }
-a.btn, a.btn .retour,
-button:not(.navbar-toggler) {
+/* a.btn, a.btn .retour,
+button:not(.navbar-toggler),
+button:not(.btn) {
   background-color: #527199!important;
   border: none !important;
   transition: 0.5s;
-}
+} */
 
 /*CARROUSELLE*/
 
@@ -179,4 +180,9 @@ footer .container-fluid {
     bottom: 0;
     z-index: 10000;
     /* 🤣 cherche l'embrouille */
+}
+
+.divMyAccount {
+  height: 40vh;
+  overflow: auto;
 }

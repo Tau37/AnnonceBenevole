@@ -30,7 +30,7 @@
   		{{ dump(item) }}
   	</pre> #}
 
-  	<div class="card card-centrer global mb-2">
+  	<div class="card card-centrer global mb-2 divMyAccount">
   		{# <img class="card-img-top" src="#" alt="#"> #}
   		<div class="card-body">
         <p class="card-text text-center">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
@@ -38,7 +38,7 @@
         <p class="card-text">Annonce : {{ item.description }}</p>
   			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
   			<p class="card-text">posté le : {{ item.date ? item.date|date('d/m/Y à h:i') }} heures </p>
-			<p class="card-text">Annonce visible 
+			<p class="card-text">Annonce visible
 			{% if item.valide == 0 %}
 			❌
 			{% elseif item.valide == 1 %}
@@ -89,13 +89,14 @@
       {# <pre>
   		{{ dump(item) }}
   	</pre> #}
-  	<div class="card card-centrer global mb-2">
+  	<div class="card card-centrer global mb-2 divMyAccount">
   		{# <img class="card-img-top" src="#" alt="#"> #}
   		<div class="card-body">
-  			<h5 class="card-title">{{ item.annonces }}</h5>
+        <p class="card-text text-center">Titre du message {{ item.linkCategorie.categorie }} </p>
+  			<h5 class="card-title">Titre du message {{ item.annonces }}</h5>
   			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
-  			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
-  			<p class="card-text">{{ item.description }}</p>
+  			<p class="card-text">reçu le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
+  			<p class="card-text"> contenue du message</p>
   			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
   			{# <p class="card-text">{{ item.linkCategorie.categorie }}</p>
   			<p class="card-text">{{ item.linkCategorie.id }}</p>

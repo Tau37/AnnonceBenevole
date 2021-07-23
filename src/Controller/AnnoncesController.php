@@ -25,7 +25,7 @@ class AnnoncesController extends AbstractController
     {
         /* sécurité du crud */
         if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
-            return $this->redirect($this->generateUrl('home')); 
+            return $this->redirect($this->generateUrl('home'));
         }
 
         // je récupére le nom des catégorie en fonction de l'id de la liaison (linkCategorie)
@@ -76,7 +76,7 @@ class AnnoncesController extends AbstractController
             $this->addFlash("annonceSucess", "Annonce enregistré avec succès");
 
             if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
-                return $this->redirect($this->generateUrl('my_account')); 
+                return $this->redirect($this->generateUrl('my_account'));
             }
             return $this->redirectToRoute('annonces_index');
         }
@@ -94,7 +94,7 @@ class AnnoncesController extends AbstractController
     {
         if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
             if($annonce->getLinkAnnonce()->getId() !=  $this->getUser()->getId() ){
-                return $this->redirect($this->generateUrl('my_account')); 
+                return $this->redirect($this->generateUrl('my_account'));
               }
         }
         //dd($annonce);
@@ -116,7 +116,7 @@ class AnnoncesController extends AbstractController
         /* sécurité de l'édition*/
         if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
             if($annonce->getLinkAnnonce()->getId() !=  $this->getUser()->getId() ){
-                return $this->redirect($this->generateUrl('my_account')); 
+                return $this->redirect($this->generateUrl('my_account'));
               }
         }
 
@@ -146,7 +146,7 @@ class AnnoncesController extends AbstractController
             $entityManager->flush();
         }
         if ($this->getUser()->getRoles()[0] != "ROLE_ADMIN") {
-            return $this->redirect($this->generateUrl('my_account')); 
+            return $this->redirect($this->generateUrl('my_account'));
         }
         return $this->redirectToRoute('annonces_index');
     }

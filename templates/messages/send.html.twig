@@ -8,7 +8,9 @@
 		<div class="row">
 			<div class="col">
 				<h1>Envoyer un message</h1>
+					{{ form_start(Messages) }}
                 {{ form(form) }}
+					{{ form_end(Messages) }}		
 				<br>
 				<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
 					Voir mes dossiers

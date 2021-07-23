@@ -48,10 +48,10 @@
 			{# <a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a> #}
 			<a href="#" id="suite{{popUpNumber}}" class="btn btn-primary">Lire la suite</a>
 			{% if is_granted("ROLE_USER") == false %}
-			<a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a>
+			<a href="{{ path("app_register") }}" class="btn btn-primary">Inscrivez-vous !</a>
 			<a href="{{ path("app_login") }}" class="btn btn-primary">Connectez-vous !</a>
 			{% else %}
-			{# <a href="{{ path("send"), {'id': annonce.id}) }}" class="btn btn-primary">Répondre à l'annonces</a> #}
+			<a href="{{ path("send", {'id': item.id}) }}" class="btn btn-primary">Répondre à l'annonces</a>
 			{% endif %}
 			{# <p>pop numéro {{ popUpNumber }}</p> #}
 		</div>

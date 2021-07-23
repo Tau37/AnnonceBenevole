@@ -71,7 +71,7 @@ class MessagesController extends AbstractController
     {
 
         if($message->getSender()->getId() !=  $this->getUser()->getId() && $message->getRecipient()->getId() !=  $this->getUser()->getId()){
-          return $this->redirect($this->generateUrl('app_logout')); 
+          return $this->redirect($this->generateUrl('app_logout'));
         }
         $message->setIsRead(true);
         $em = $this->getDoctrine()->getManager();
