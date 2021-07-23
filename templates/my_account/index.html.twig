@@ -27,7 +27,6 @@
   	{% set popUpNumber = 1 %}
   	{% for item in annonces | slice(0,4) %}
       {# <pre>
-  		{{ dump(item) }}
   	</pre> #}
 
   	<div class="card card-centrer global mb-2 divMyAccount">
@@ -57,18 +56,7 @@
   			{# <p>pop numéro {{ popUpNumber }}</p> #}
   		</div>
   	</div>
-  	<div class=" card card-centrer popUp" id="popUpAnnonceNum{{popUpNumber}}">
-  		<div class="card-body">
-          	<h5 class="card-title">Vous lisez la suite</h5>
-  			<h5 class="card-title">{{ item.annonces }}</h5>
-  			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
-  			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
-  			<p class="card-text">{{ item.description }}</p>
-  			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
-          	<br>
-          	<a href="#" class="retour">pour revenir</a>
-  		</div>
-      </div>
+
 
   	{# incréemntation  différenciation des popUP #}
   	{% set popUpNumber = (popUpNumber + 1) %}
@@ -84,58 +72,31 @@
 
   	</div>
   	{# variable de différenciation des popUP #}
-  	{% set popUpNumber = 1 %}
-  	{% for item in annonces | slice(0,4) %}
-      {# <pre>
-  		{{ dump(item) }}
-  	</pre> #}
-  	<div class="card card-centrer global mb-2 divMyAccount">
+
+  	{#  for item in annonces | slice(0,4) %} #}
+
+  {% for message in app.user.received | slice(0,4) %}
+    {% if message.isRead == 0 %}
+      {% set bold = "fw-bold" %}
+    {% else %}
+      {% set bold = "" %}
+    {% endif %}
+    <div class="card card-centrer global mb-2 divMyAccount">
   		{# <img class="card-img-top" src="#" alt="#"> #}
   		<div class="card-body">
-        <p class="card-text text-center">Titre du message {{ item.linkCategorie.categorie }} </p>
-  			<h5 class="card-title">Titre du message {{ item.annonces }}</h5>
-  			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
-  			<p class="card-text">reçu le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
-  			<p class="card-text"> contenue du message</p>
-  			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
-  			{# <p class="card-text">{{ item.linkCategorie.categorie }}</p>
-  			<p class="card-text">{{ item.linkCategorie.id }}</p>
-  			<img src="../../assets/img/categorie/{{item.linkCategorie.id}}.jpg" alt="{{ item.linkCategorie.categorie }}"> #}
-  			{# <a href="{{ path('annonces_show', {'id': item.id}) }}" class="btn btn-primary">Plus d'info...</a> #}
-  			<a href="#" id="suite{{popUpNumber}}" class="btn btn-primary">Afficher</a>
-        <a href="#" title="supprimer" class="ml-3"><img id="trash" src="../../assets/img/logo/trash.png" alt="Logo supprimer"></a>
-  			{# <a href="registration.php" class="btn btn-primary">Inscrivez-vous !</a> #}
-  			{# <p>pop numéro {{ popUpNumber }}</p> #}
+        <p class="card-text text-center">Titre du message : "{{ message.title }}"" </p>
+  			<h5 class="card-title">De : "{{ message.sender.email }}"</h5>
+  			<p class="card-title">A : "{{ message.recipient.email }}"</p>
+  			<p class="card-text">reçu le : {{ message.createdAt|date('d/m/Y à h:i')  }}  </p>
+  			<p class="card-text"> {{ message.message }}</p>
+        <a href="{{ path("read", {id: message.id}) }}" id="suite{{popUpNumber}}" class="btn btn-primary">Afficher</a>
+        <a href="{{ path("delete", {id: message.id, "MessageSup":"MessageSup" }) }}" title="supprimer" class="ml-3"><img id="trash" src="../../assets/img/logo/trash.png" alt="Logo supprimer"></a>
+
   		</div>
   	</div>
-  	<div class=" card card-centrer popUp" id="popUpAnnonceNum{{popUpNumber}}">
-  		<div class="card-body">
-          	<h5 class="card-title">Vous lisez la suite</h5>
-  			<h5 class="card-title">{{ item.annonces }}</h5>
-  			<p class="card-title">De : {{ item.linkAnnonce.prenom }}</p>
-  			<p class="card-text">posté le : {{ item.date ? item.date|date('Y-m-d à H') : '' }} heures </p>
-  			<p class="card-text">{{ item.description }}</p>
-  			<p class="card-text">{{ item.linkCategorie.categorie }} <img src="../../assets/img/logo/{{item.linkCategorie.id}}.png" alt="{{ item.linkCategorie.categorie }}"></p>
-          	<br>
-          	<a href="#" class="retour">pour revenir</a>
-  		</div>
-      </div>
-
-  	{# incréemntation  différenciation des popUP #}
-  	{% set popUpNumber = (popUpNumber + 1) %}
   {% endfor %}
   <a href="{{ path ('messages') }}" class="btn btn-primary auto">Tous mes messages</a>
   </section>
-
-
-
-
-
-
-
-
-
-
 </div>
 
 

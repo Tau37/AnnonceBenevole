@@ -86,11 +86,17 @@ class MessagesController extends AbstractController
      */
     public function delete(Messages $message): Response
     {
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($message);
         $em->flush();
+        if ( isset($_GET["MessageSup"])) {
+          return $this->redirect($this->generateUrl('my_account'));
+        }
+        else {
+          return $this->redirectToRoute("received");
+        }
 
-        return $this->redirectToRoute("received");
     }
 
 }

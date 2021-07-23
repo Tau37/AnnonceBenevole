@@ -51,7 +51,7 @@
 			<a href="{{ path("app_register") }}" class="btn btn-primary">Inscrivez-vous !</a>
 			<a href="{{ path("app_login") }}" class="btn btn-primary">Connectez-vous !</a>
 			{% else %}
-			<a href="{{ path("send", {'id': item.id}) }}" class="btn btn-primary">Répondre à l'annonces</a>
+			<a href="{{ path("send", {'id': item.id, 'titre':item.annonces, 'mail':item.linkAnnonce.id}) }}" class="btn btn-primary">Répondre à l'annonce</a>
 			{% endif %}
 			{# <p>pop numéro {{ popUpNumber }}</p> #}
 		</div>

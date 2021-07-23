@@ -17,6 +17,7 @@
 					Voir mes dossiers
 				</a>
                 <a href="{{path("received")}}" class="btn btn-primary">Retour à la boite de réception</a>
+								<a href="{{ path("send", {'id': message.id, 'titre':message.title , 'mail':message.sender.email ,'response':'response'}) }}" class="btn btn-primary">Répondre </a>
 			</div>
 		</div>
 	</section>

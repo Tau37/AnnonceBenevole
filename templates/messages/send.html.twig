@@ -8,9 +8,54 @@
 		<div class="row">
 			<div class="col">
 				<h1>Envoyer un message</h1>
-					{{ form_start(Messages) }}
-                {{ form(form) }}
-					{{ form_end(Messages) }}		
+					{{ form_start(form) }}
+					{% if app.request.get('titre') and app.request.get('mail') and app.request.get('response') == 'response' %}
+					<div class="message">
+						<div class="form-group">
+							{{ form_label(form.title, 'Titre')}}
+							{{ form_widget(form.title, {'attr':{'class':'form-control'}, 'value': 'Re : '~ app.request.get('titre')})}}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.message, 'Message')}}
+							{{ form_widget(form.message, {'attr':{'class':'form-control'}})}}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.recipient, 'Destinataire')}}
+							{{ form_widget(form.recipient, {'attr':{'class':'form-control'}, 'selected':'selected', 'value':  app.request.get('mail')})}}
+						</div>
+					</div>
+					{% elseif app.request.get('titre') and app.request.get('mail')  %}
+					<div class="message">
+						<div class="form-group">
+							{{ form_label(form.title, 'Titre')}}
+							{{ form_widget(form.title, {'attr':{'class':'form-control'}, 'value': 'réponse à : '~ app.request.get('titre')})}}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.message, 'Message')}}
+							{{ form_widget(form.message, {'attr':{'class':'form-control'}})}}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.recipient, 'Destinataire')}}
+							{{ form_widget(form.recipient, {'attr':{'class':'form-control'}, 'selected':'selected', 'value':  app.request.get('mail')})}}
+						</div>
+					</div>
+					{% else %}
+					<div class="message">
+						<div class="form-group">
+							{{ form_label(form.title, 'Titre')}}
+							{{ form_widget(form.title, {'attr':{'class':'form-control'}})}}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.message, 'Message')}}
+							{{ form_widget(form.message, {'attr':{'class':'form-control'}})}}
+						</div>
+						<div class="form-group">
+							{{ form_label(form.recipient, 'Destinataire')}}
+							{{ form_widget(form.recipient, {'attr':{'class':'form-control'}})}}
+						</div>
+					</div>
+					{% endif %}
+					{{ form_end(form) }}
 				<br>
 				<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
 					Voir mes dossiers
