@@ -29,14 +29,11 @@
 			<script src="https://kit.fontawesome.com/358674dbaa.js" crossorigin="anonymous"></script>
 			<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="crossorigin=""></script>
 			<script src="https://unpkg.com/leaflet.markercluster@1.1.0/dist/leaflet.markercluster.js"></script>
-
-			</script>
 			<script src="{{ asset('assets/js/javascript.js') }}"></script>
 		{% endblock %}
 	</head>
 
 	<body>
-
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<a class="navbar-brand" href="{{ path('home') }}">Accueil</a>
@@ -46,10 +43,10 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						{% if is_granted("ROLE_ADMIN") %}
-							<li class="nav-item">
+							<li class="nav-item active">
 								<a class="nav-link" href="{{ path('admin') }}">Administration</a>
 							</li>
-						<li class="nav-item dropdown">
+						<!-- <li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Listes des CRUD
 							</a>
@@ -60,7 +57,7 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="{{ path('categories_index') }}">Catégories</a>
 							</div>
-						</li>
+						</li> -->
 						{% endif %}
 							<li class="nav-item active">
 								<a class="nav-link" href="{{ path('annonces') }}">Les annonces
@@ -75,13 +72,16 @@
 								<a class="nav-link" href="{{ path('annonces_new') }}">Poster une annonce
 								</a>
 							</li>
-							<li class="nav-item active">
+							<!-- <li class="nav-item active">
 								<a class="nav-link" href="{{ path('my_account') }}">Mon compte
 								</a>
-							</li>
+							</li> -->
 							<li class="nav-item active">
 								<a class="nav-link" href="{{ path("messages") }}">Messagerie</a>
 								</a>
+							</li>
+							<li class="nav-item active">
+							<a class="nav-link" href="{{ path('my_account') }}"> {{ app.user.nom ~ ' ' ~ app.user.prenom}}</a>
 							</li>
 						{% else %}
 							<li class="nav-item active">
@@ -93,15 +93,14 @@
 								</a>
 							</li>
 						{% endif %}
-						{# <li class="nav-item">
-							<a class="nav-link disabled" href="#">Disabled</a>
-						</li> #}
 					</ul>
-					{# <form id="formSearch" class="form-inline my-2 my-lg-0" method="post" name="search" action="">
-						<input id="inputSearch" class="form-control mr-sm-2" type="search" name="auteur" placeholder="Search" aria-label="Search" autocomplete="off">
-						<div id="search"></div>
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-					</form> #}
+			{#		{% if is_granted("ROLE_USER")  %}
+						<li class="nav-item active">
+						<a class="nav-link" href="{{ path('my_account') }}"> {{ app.user.nom ~ ' ' ~ app.user.prenom}}</a>
+						</li>
+					{% else %}
+						<p>visiteur</p>
+					{% endif %} #}
 				</div>
 			</nav>
 		</header>

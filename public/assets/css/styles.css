@@ -26,14 +26,9 @@ a {
 a:hover{
   color: #000;
 }
-/* a.btn, a.btn .retour,
-button:not(.navbar-toggler),
-button:not(.btn) {
-  background-color: #527199!important;
-  border: none !important;
-  transition: 0.5s;
-} */
-
+li.nav-item:last-of-type {
+  list-style: none;
+}
 /*CARROUSELLE*/
 
 .wrapper {
@@ -120,7 +115,15 @@ select {
     /* height: 75vh; Fifou tu fais chier 🤣 */
     overflow: auto;
     margin: auto;
+    position: relative;
 }
+
+#myBtn {
+  position: fixed;
+  bottom: 15vh;
+  right: 2%;
+}
+
 
 #trash {
     display: inline-block;
